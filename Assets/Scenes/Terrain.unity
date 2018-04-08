@@ -633,8 +633,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1149812286}
   Tile:
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1484362691792320, guid: fcbdcc75208c647bb8ed6e56ce6acf9b, type: 2}
+  - {fileID: 1553202046354356, guid: 1019fa42eaaf54607aa7e9e19bcf98c1, type: 2}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -644,9 +644,9 @@ MonoBehaviour:
   - {fileID: 1882619317011318, guid: 58f939e4a4d964d45bee6d1f546e0d85, type: 2}
   - {fileID: 1957999931594560, guid: e993c6ece17c7470cb0e68a2bfdf7fb1, type: 2}
   protrusions:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1442923701802240, guid: 9faf814ea8f7246de941fa6ba9c66148, type: 2}
+  - {fileID: 1111268899718808, guid: b5ed28c6333044076aaef7ca8ea1528f, type: 2}
+  - {fileID: 1348423082047138, guid: b7af191a70e1443f0a9bed09211c8ee1, type: 2}
   width: 100
   height: 100
   samplingScale: 3
