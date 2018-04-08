@@ -7,6 +7,7 @@ public class TerrainGenerator : MonoBehaviour {
 	public GameObject[] Tile;
 	public GameObject[] Trees;
 	public GameObject[] protrusions;
+	public GameObject[] Rocks;
 	
 	public int width;
 	public int height;
@@ -18,6 +19,8 @@ public class TerrainGenerator : MonoBehaviour {
 	private Transform protrusionHolder;
 	private Vector3 position;
 	private Vector3 scale;
+	private int[,] board;
+	private int[,] treeBoard;
 
 	private enum TerrainItem {
 		Nothing = 0,
@@ -29,11 +32,14 @@ public class TerrainGenerator : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		int heightCoord = height * 3;
+		int widthCoord = width * 3;
+
 		Random.InitState((int)System.DateTime.Now.Ticks);
-		int[,] board = new int[height*3, width*3];
-		int[,] treeBoard = new int[height*3, width*3];
-		InitBoard(ref board);
-		InitBoard(ref treeBoard);
+		board = new int[heightCoord, widthCoord];
+		treeBoard = new int[heightCoord, widthCoord];
+		InitBoard(board);
+		InitBoard(treeBoard);
 
 		tileHolder = new GameObject("Board").transform;
 		treeHolder = new GameObject("Trees").transform;
@@ -45,15 +51,18 @@ public class TerrainGenerator : MonoBehaviour {
 		offsetY = Random.Range(0, 9999f);
 		
 		int[] distribution = {0,0,0,0,0,0,0,0,0,0,0};
-		for (int r = 0; r < width; r++) {
-			for (int c = 0; c < height; c++) {
+		for (int r = 0; r < widthCoord; r++) {
+			for (int c = 0; c < heightCoord; c++) {
 				int tileIndex = randomTile(r, c);
 				distribution[tileIndex]++;
 
-				position.Set(r * 3, 0, c * 3);
-				GameObject tileToInstantiate = Instantiate(Tile[tileIndex%2], position, Quaternion.identity);
-				tileToInstantiate.transform.SetParent(tileHolder.gameObject.transform);
-				if (tileIndex <=2 || tileIndex >= 8) {
+				if (r % 3 == 0 && c % 3 == 0) {
+					position.Set(r, 0, c);
+					GameObject tileToInstantiate = Instantiate(Tile[tileIndex%2], position, Quaternion.identity);
+					tileToInstantiate.transform.SetParent(tileHolder.gameObject.transform);
+				}
+
+				if (tileIndex <= 2 || tileIndex >= 8) {
 					treePlacement(r, c);
 				}
 
@@ -69,7 +78,7 @@ public class TerrainGenerator : MonoBehaviour {
 		}
 	}
 	
-	private void InitBoard(ref int[,] board) {
+	private void InitBoard(int[,] board) {
 		for (int x = 0; x < height * 3; x++) {
 			for (int y = 0; y < width * 3; y++) {
 				board[x,y] = (int)TerrainItem.Nothing;
@@ -101,10 +110,10 @@ public class TerrainGenerator : MonoBehaviour {
 
 	private void treePlacement(int r, int c) {
 		float scaleFactor = 0f;
-		float randomTree = Random.Range(0, 2);
+		float randomTree = Random.Range(0f, 2f);
 		GameObject treeToInstantiate;
 
-		if (randomTree < 1) {
+		if (randomTree < 1.9f) {
 			return;
 		}
 
@@ -120,17 +129,17 @@ public class TerrainGenerator : MonoBehaviour {
 		} else if (randomTree >= 1 && randomTree < 2) {
 			scaleFactor = 1 + Random.Range(0, .75f);
 
-			position.Set(2 * r, .3f, 2 * c);
+			position.Set(r, .3f, c);
 			scale.Set(scaleFactor, scaleFactor, scaleFactor); 
 
 			treeToInstantiate = Instantiate(Trees[1], position, Quaternion.identity);
 		} else {
 			scaleFactor = 1 + Random.Range(0, .75f);
 
-			position.Set(3 * r, -.5f, 3 * c);
+			position.Set(r, .3f, c);
 			scale.Set(scaleFactor, scaleFactor, scaleFactor); 
 
-			treeToInstantiate = Instantiate(Trees[2], new Vector3(r * 3, .75f, c * 3), Quaternion.identity);
+			treeToInstantiate = Instantiate(Trees[2], position, Quaternion.identity);
 		}
 		treeToInstantiate.transform.SetParent(treeHolder);
 		treeToInstantiate.transform.localScale = scale;
@@ -141,21 +150,9 @@ public class TerrainGenerator : MonoBehaviour {
 		float coordY = ((float)y / height) * samplingScale + offsetY;
 
 		float sample = Mathf.PerlinNoise(coordX, coordY);
-		sample = Mathf.Floor(sample * 100.0f);
-
+		sample = Mathf.Floor(Mathf.Abs(sample) * 100.0f);
+		print(sample);
 		int index = (int)sample / 10;
-		switch(index) {
-			case 0: return 0;
-			case 1: return 1;
-			case 2: return 2;
-			case 3: return 3;
-			case 4: return 4;
-			case 5: return 5;
-			case 6: return 6;
-			case 7: return 7;
-			case 8: return 8;
-			case 9: return 9;
-		}
 		return index;
 	}
 	// Update is called once per frame

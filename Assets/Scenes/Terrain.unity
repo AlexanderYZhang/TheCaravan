@@ -144,10 +144,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraSensitivity: 90
-  climbSpeed: 4
+  climbSpeed: 10
   normalMoveSpeed: 10
   slowMoveFactor: 0.25
-  fastMoveFactor: 3
+  fastMoveFactor: 5
 --- !u!81 &25786217
 AudioListener:
   m_ObjectHideFlags: 0
@@ -204,8 +204,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 25786215}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 108.075806, y: 175.90427, z: 373.73676}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -385,6 +385,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  Rocks: []
   width: 100
   height: 100
   samplingScale: 7
@@ -633,20 +634,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1149812286}
   Tile:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1484362691792320, guid: fcbdcc75208c647bb8ed6e56ce6acf9b, type: 2}
+  - {fileID: 1553202046354356, guid: 1019fa42eaaf54607aa7e9e19bcf98c1, type: 2}
   Trees:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1547699000316826, guid: df9de83061c3d46c5adac232a12fbb68, type: 2}
+  - {fileID: 1571781675226422, guid: 411b29b4ff1e34b5d80b017187e147c7, type: 2}
+  - {fileID: 1882619317011318, guid: 58f939e4a4d964d45bee6d1f546e0d85, type: 2}
+  - {fileID: 1957999931594560, guid: e993c6ece17c7470cb0e68a2bfdf7fb1, type: 2}
   protrusions:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1442923701802240, guid: 9faf814ea8f7246de941fa6ba9c66148, type: 2}
+  - {fileID: 1111268899718808, guid: b5ed28c6333044076aaef7ca8ea1528f, type: 2}
+  - {fileID: 1348423082047138, guid: b7af191a70e1443f0a9bed09211c8ee1, type: 2}
+  Rocks: []
   width: 100
   height: 100
   samplingScale: 3
