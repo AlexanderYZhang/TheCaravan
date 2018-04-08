@@ -151,7 +151,7 @@ public class TerrainGenerator : MonoBehaviour {
 
 		float sample = Mathf.PerlinNoise(coordX, coordY);
 		sample = Mathf.Floor(Mathf.Abs(sample) * 100.0f);
-		print(sample);
+
 		int index = (int)sample / 10;
 		return index;
 	}
