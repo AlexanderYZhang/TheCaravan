@@ -1,0 +1,252 @@
+fileFormatVersion: 2
+guid: 06b15dd59e025ae49a32473c34c11821
+timeCreated: 1523149719
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: Armature
+    100002: //RootNode
+    100004: foot_L
+    100006: foot_R
+    100008: footCtrl_L
+    100010: footCtrl_R
+    100012: footIK_L
+    100014: footIK_R
+    100016: footRollCtrl_L
+    100018: footRollCtrl_R
+    100020: hand_L
+    100022: hand_R
+    100024: head
+    100026: heelRoll_L
+    100028: heelRoll_R
+    100030: hipsCtrl
+    100032: kneeCtrl_L
+    100034: kneeCtrl_R
+    100036: lowArm_L
+    100038: lowArm_R
+    100040: lowLeg_L
+    100042: lowLeg_R
+    100044: Man
+    100046: neck
+    100048: root
+    100050: shoulder_L
+    100052: shoulder_R
+    100054: spine1
+    100056: spine2
+    100058: toe_L
+    100060: toe_R
+    100062: toeRoll_L
+    100064: toeRoll_R
+    100066: upArm_L
+    100068: upArm_R
+    100070: upLeg_L
+    100072: upLeg_R
+    400000: Armature
+    400002: //RootNode
+    400004: foot_L
+    400006: foot_R
+    400008: footCtrl_L
+    400010: footCtrl_R
+    400012: footIK_L
+    400014: footIK_R
+    400016: footRollCtrl_L
+    400018: footRollCtrl_R
+    400020: hand_L
+    400022: hand_R
+    400024: head
+    400026: heelRoll_L
+    400028: heelRoll_R
+    400030: hipsCtrl
+    400032: kneeCtrl_L
+    400034: kneeCtrl_R
+    400036: lowArm_L
+    400038: lowArm_R
+    400040: lowLeg_L
+    400042: lowLeg_R
+    400044: Man
+    400046: neck
+    400048: root
+    400050: shoulder_L
+    400052: shoulder_R
+    400054: spine1
+    400056: spine2
+    400058: toe_L
+    400060: toe_R
+    400062: toeRoll_L
+    400064: toeRoll_R
+    400066: upArm_L
+    400068: upArm_R
+    400070: upLeg_L
+    400072: upLeg_R
+    2100000: unnamed
+    4300000: Man
+    7400000: Death
+    7400002: ArmatureAction
+    7400004: ArmatureAction (1)
+    9500000: //RootNode
+    13700000: Man
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Death
+      takeName: ArmatureAction
+      firstFrame: 1
+      lastFrame: 33
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: ArmatureAction
+      takeName: ArmatureAction
+      firstFrame: 0
+      lastFrame: 232
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: 
+      takeName: Default Take
+      firstFrame: 0
+      lastFrame: 32
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
