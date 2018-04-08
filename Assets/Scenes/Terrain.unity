@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -639,10 +639,10 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   Trees:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1547699000316826, guid: df9de83061c3d46c5adac232a12fbb68, type: 2}
+  - {fileID: 1571781675226422, guid: 411b29b4ff1e34b5d80b017187e147c7, type: 2}
+  - {fileID: 1882619317011318, guid: 58f939e4a4d964d45bee6d1f546e0d85, type: 2}
+  - {fileID: 1957999931594560, guid: e993c6ece17c7470cb0e68a2bfdf7fb1, type: 2}
   protrusions:
   - {fileID: 0}
   - {fileID: 0}

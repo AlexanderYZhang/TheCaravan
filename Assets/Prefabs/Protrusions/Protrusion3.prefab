@@ -37,7 +37,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4248295533061666}
   m_Layer: 0
-  m_Name: Ground3
+  m_Name: Protrusion3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
