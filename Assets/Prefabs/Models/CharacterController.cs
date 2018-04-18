@@ -14,7 +14,7 @@ public class CharacterController : MonoBehaviour {
         anim = GetComponent<Animator>();
         mainCam.transform.position = mainCamOffset;
         mainCam.transform.eulerAngles = mainCamRot;
-        anim.SetTrigger("Idle");
+        anim.SetTrigger("moving");
     }
 	
 	// Update is called once per frame
