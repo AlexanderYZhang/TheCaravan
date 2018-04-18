@@ -199,7 +199,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &1013390173
+--- !u!1001 &818459907
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -238,11 +238,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114580150321026034, guid: aba8bb0f38b571b42942a37237e1ec59,
-        type: 2}
-      propertyPath: mainCam
-      value: 
-      objectReference: {fileID: 1395160079}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: aba8bb0f38b571b42942a37237e1ec59, type: 2}
   m_IsPrefabParent: 0
