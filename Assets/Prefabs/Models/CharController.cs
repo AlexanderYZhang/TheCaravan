@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterController : MonoBehaviour {
+public class CharController : MonoBehaviour {
     // Camera Setup
     public GameObject mainCam;
     public Vector3 mainCamOffset = new Vector3(15, 20, 15);
