@@ -9,8 +9,8 @@ public class CharController : MonoBehaviour {
     public Vector3 mainCamRot = new Vector3(45, -135, 0);
 
     // Character Parameters
-    public float walkSpeed = 10;
-    public float runSpeed = 20;
+    public float walkSpeed = 5;
+    public float runSpeed = 15;
     public float turnSpeed = 100;
 
     private Animator anim;
