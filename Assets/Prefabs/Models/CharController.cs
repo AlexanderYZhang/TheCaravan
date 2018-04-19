@@ -29,10 +29,11 @@ public class CharController : MonoBehaviour {
         Vector2 turn = (new Vector2(Input.GetAxisRaw("Horizontal"), 0.0f)).normalized;
 
         bool running = Input.GetKey(KeyCode.LeftShift);
-        float moveS = ((running) ? runSpeed : walkSpeed) * forward.x;
+        float moveS = (running ? runSpeed : walkSpeed) * forward.x;
         float turnS = turnSpeed * turn.x;
 
-        print(transform.forward);
+        float animSpeedPct = (running ? 0.5f : 0.25f) * forward.x;
+        anim.SetFloat("speedPct", animSpeedPct);
 
         transform.Translate(transform.forward * moveS * Time.deltaTime, Space.World);
         transform.Rotate(transform.up * turnS * Time.deltaTime);
