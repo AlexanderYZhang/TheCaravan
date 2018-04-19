@@ -11,6 +11,7 @@ public class CharController : MonoBehaviour {
     // Character Parameters
     public float walkSpeed = 10;
     public float runSpeed = 20;
+    public float turnSpeed = 100;
 
     private Animator anim;
 
@@ -24,17 +25,17 @@ public class CharController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        Vector2 input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-        Vector2 inputDir = input.normalized;
-
-        if (inputDir != Vector2.zero) {
-            transform.eulerAngles = Vector3.up * Mathf.Atan2(inputDir.x, inputDir.y) * Mathf.Rad2Deg;
-        }
+        Vector2 forward = (new Vector2(Input.GetAxisRaw("Vertical"), 0.0f)).normalized;
+        Vector2 turn = (new Vector2(Input.GetAxisRaw("Horizontal"), 0.0f)).normalized;
 
         bool running = Input.GetKey(KeyCode.LeftShift);
-        float speed = ((running) ? runSpeed : walkSpeed) * inputDir.magnitude;
+        float moveS = ((running) ? runSpeed : walkSpeed) * forward.x;
+        float turnS = turnSpeed * turn.x;
 
-        transform.Translate(transform.forward * speed * Time.deltaTime, Space.World);
+        print(transform.forward);
+
+        transform.Translate(transform.forward * moveS * Time.deltaTime, Space.World);
+        transform.Rotate(transform.up * turnS * Time.deltaTime);
 
         mainCam.transform.position = transform.position + mainCamOffset;
 	}
