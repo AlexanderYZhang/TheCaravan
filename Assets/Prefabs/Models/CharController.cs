@@ -32,7 +32,7 @@ public class CharController : MonoBehaviour {
         float moveS = (running ? runSpeed : walkSpeed) * forward.x;
         float turnS = turnSpeed * turn.x;
 
-        float animSpeedPct = (running ? 0.5f : 0.25f) * forward.x;
+        float animSpeedPct = (running ? 1.0f : 0.5f) * forward.x;
         anim.SetFloat("speedPct", animSpeedPct);
 
         transform.Translate(transform.forward * moveS * Time.deltaTime, Space.World);

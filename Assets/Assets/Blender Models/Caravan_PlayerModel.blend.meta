@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 06b15dd59e025ae49a32473c34c11821
-timeCreated: 1524021595
+timeCreated: 1524251508
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
@@ -42,6 +42,28 @@ ModelImporter:
     100068: upArm_R
     100070: upLeg_L
     100072: upLeg_R
+    100074: Bone_005
+    100076: Chest
+    100078: Foot_L
+    100080: Foot_R
+    100082: Hand_L
+    100084: Hand_R
+    100086: Head
+    100088: Hips
+    100090: LowerArm_L
+    100092: LowerArm_R
+    100094: LowerLeg_L
+    100096: LowerLeg_R
+    100098: Neck
+    100100: Should_L
+    100102: Should_R
+    100104: Spine
+    100106: Toes_L
+    100108: Toes_R
+    100110: UpperArm_L
+    100112: UpperArm_R
+    100114: UpperLeg_L
+    100116: UpperLeg_R
     400000: Armature
     400002: //RootNode
     400004: foot_L
@@ -79,6 +101,28 @@ ModelImporter:
     400068: upArm_R
     400070: upLeg_L
     400072: upLeg_R
+    400074: Bone_005
+    400076: Chest
+    400078: Foot_L
+    400080: Foot_R
+    400082: Hand_L
+    400084: Hand_R
+    400086: Head
+    400088: Hips
+    400090: LowerArm_L
+    400092: LowerArm_R
+    400094: LowerLeg_L
+    400096: LowerLeg_R
+    400098: Neck
+    400100: Should_L
+    400102: Should_R
+    400104: Spine
+    400106: Toes_L
+    400108: Toes_R
+    400110: UpperArm_L
+    400112: UpperArm_R
+    400114: UpperLeg_L
+    400116: UpperLeg_R
     2100000: unnamed
     4300000: Man
     7400000: Death
@@ -88,6 +132,9 @@ ModelImporter:
     7400008: Running
     7400010: Walking
     7400012: Idle
+    7400014: Default Take
+    7400016: Run
+    7400018: Walk
     9500000: //RootNode
     13700000: Man
   externalObjects: {}
@@ -118,10 +165,10 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: ArmatureAction
-      takeName: ArmatureAction
+      name: Default Take
+      takeName: Default Take
       firstFrame: 0
-      lastFrame: 232
+      lastFrame: 23
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -147,9 +194,9 @@ ModelImporter:
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
       name: Death
-      takeName: ArmatureAction
-      firstFrame: 1
-      lastFrame: 33
+      takeName: Death
+      firstFrame: 0
+      lastFrame: 38
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -174,94 +221,10 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Gathering
-      takeName: ArmatureAction
-      firstFrame: 51
-      lastFrame: 83
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 1
-      loopBlend: 1
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
-    - serializedVersion: 16
-      name: Running
-      takeName: ArmatureAction
-      firstFrame: 101
-      lastFrame: 133
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 1
-      loopBlend: 1
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
-    - serializedVersion: 16
-      name: Walking
-      takeName: ArmatureAction
-      firstFrame: 151
-      lastFrame: 183
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 1
-      loopBlend: 1
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
-    - serializedVersion: 16
       name: Idle
-      takeName: ArmatureAction
-      firstFrame: 201
-      lastFrame: 232
+      takeName: Idle
+      firstFrame: 0
+      lastFrame: 49
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -269,7 +232,91 @@ ModelImporter:
       loop: 0
       hasAdditiveReferencePose: 0
       loopTime: 1
-      loopBlend: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Run
+      takeName: Run
+      firstFrame: 0
+      lastFrame: 14
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Walk
+      takeName: Walk
+      firstFrame: 0
+      lastFrame: 24
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Gathering
+      takeName: Gathering
+      firstFrame: 0
+      lastFrame: 18
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
