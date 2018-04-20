@@ -5,13 +5,13 @@ using UnityEngine;
 public class CharController : MonoBehaviour {
     // Camera Setup
     public GameObject mainCam;
-    public Vector3 mainCamOffset = new Vector3(15, 20, 15);
-    public Vector3 mainCamRot = new Vector3(45, -135, 0);
+    private Vector3 mainCamOffset = new Vector3(0, 20, -20);
+    private Vector3 mainCamRot = new Vector3(45, 0, 0);
 
     // Character Parameters
-    public float walkSpeed = 5;
-    public float runSpeed = 15;
-    public float turnSpeed = 100;
+    private float walkSpeed = 5;
+    private float runSpeed = 15;
+    private float turnSpeed = 100;
 
     private Animator anim;
 
@@ -25,19 +25,21 @@ public class CharController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        Vector2 forward = (new Vector2(Input.GetAxisRaw("Vertical"), 0.0f)).normalized;
-        Vector2 turn = (new Vector2(Input.GetAxisRaw("Horizontal"), 0.0f)).normalized;
+        Vector2 input = new Vector3(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        Vector2 inputDir = input.normalized;
+
+        if (inputDir != Vector2.zero) {
+            transform.eulerAngles = Vector3.up * Mathf.Atan2(inputDir.x, inputDir.y) * Mathf.Rad2Deg;
+        }
 
         bool running = Input.GetKey(KeyCode.LeftShift);
-        float moveS = (running ? runSpeed : walkSpeed) * forward.x;
-        float turnS = turnSpeed * turn.x;
+        float moveS = (running ? runSpeed : walkSpeed) * inputDir.magnitude;
 
-        float animSpeedPct = (running ? 1.0f : 0.5f) * forward.x;
-        anim.SetFloat("speedPct", animSpeedPct);
+        float animSpeedPct = (running ? 1.0f : 0.5f) * inputDir.magnitude;
 
         transform.Translate(transform.forward * moveS * Time.deltaTime, Space.World);
-        transform.Rotate(transform.up * turnS * Time.deltaTime);
+        anim.SetFloat("speedPct", animSpeedPct);
 
         mainCam.transform.position = transform.position + mainCamOffset;
-	}
+    }
 }
