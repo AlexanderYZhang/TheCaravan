@@ -89,7 +89,7 @@ public class TerrainGenerator : MonoBehaviour {
 				
 				board[x,y] = (int)TerrainItem.Nothing;
 				protrusionBoard[x,y] = (int)TerrainItem.Nothing;
-				if ((tileIndex <= 2 || tileIndex >= 8) && randomTree > 1.5f) {
+				if ((tileIndex <= 2 || tileIndex >= 8) && randomTree > 1.9f) {
 					board[x,y] = (int) TerrainItem.Tree;
 				}	
 
