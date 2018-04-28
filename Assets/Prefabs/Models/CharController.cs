@@ -11,7 +11,6 @@ public class CharController : MonoBehaviour {
     // Character Parameters
     private float walkSpeed = 5;
     private float runSpeed = 15;
-    private float turnSpeed = 100;
 
     private Animator anim;
 
