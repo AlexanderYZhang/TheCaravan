@@ -148,6 +148,8 @@ MonoBehaviour:
   normalMoveSpeed: 10
   slowMoveFactor: 0.25
   fastMoveFactor: 3
+  rotationX: 0
+  rotationY: 0
 --- !u!81 &25786217
 AudioListener:
   m_ObjectHideFlags: 0
@@ -209,7 +211,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &553927873
 GameObject:
@@ -288,6 +290,7 @@ GameObject:
   - component: {fileID: 660168211}
   - component: {fileID: 660168210}
   - component: {fileID: 660168209}
+  - component: {fileID: 660168213}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -301,12 +304,12 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 660168207}
-  m_LocalRotation: {x: 0.14133064, y: -0.03563044, z: 0.005090132, w: 0.989308}
-  m_LocalPosition: {x: 2.0097656, y: 10.291893, z: -31.478638}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 2130038657}
-  m_RootOrder: 0
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!81 &660168209
 AudioListener:
@@ -365,6 +368,24 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!114 &660168213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 660168207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b951cc1a9f84e8943b70647224cc9851, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 2130038657}
+  offset: {x: 2, y: -1.5, z: 2}
+  pitch: 2
+  zoomSpeed: 4
+  minZoom: 5
+  maxZoom: 15
+  yawSpeed: 100
 --- !u!1 &721898049
 GameObject:
   m_ObjectHideFlags: 0
@@ -650,7 +671,7 @@ Transform:
   m_Children:
   - {fileID: 721898053}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &1149812292
 Rigidbody:
@@ -853,8 +874,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 660168208}
+  m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
