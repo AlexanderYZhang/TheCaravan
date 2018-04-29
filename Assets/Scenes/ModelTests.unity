@@ -393,6 +393,10 @@ Prefab:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1808359337896718, guid: 2cc46d17e85c63d41bafa89bf09df7c2, type: 2}
+      propertyPath: m_Name
+      value: Turret_Type1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2cc46d17e85c63d41bafa89bf09df7c2, type: 2}
   m_IsPrefabParent: 0
