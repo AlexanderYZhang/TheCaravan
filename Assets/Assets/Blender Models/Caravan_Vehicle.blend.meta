@@ -1,0 +1,192 @@
+fileFormatVersion: 2
+guid: 7ac896a376e82d64a805f684b66177d2
+timeCreated: 1524949893
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Hull
+    100004: Track_L
+    100006: Track_R
+    100008: TrackCurve_L
+    100010: TrackCurve_R
+    100012: Wheel
+    100014: Wheel_001
+    100016: Wheel_002
+    100018: Wheel_003
+    100020: Wheel_004
+    100022: Wheel_005
+    100024: Wheel_006
+    100026: Wheel_007
+    100028: Wheel_008
+    100030: Wheel_009
+    100032: Wheel_010
+    100034: Wheel_011
+    100036: Wheel_012
+    100038: Wheel_013
+    100040: Cube
+    400000: //RootNode
+    400002: Hull
+    400004: Track_L
+    400006: Track_R
+    400008: TrackCurve_L
+    400010: TrackCurve_R
+    400012: Wheel
+    400014: Wheel_001
+    400016: Wheel_002
+    400018: Wheel_003
+    400020: Wheel_004
+    400022: Wheel_005
+    400024: Wheel_006
+    400026: Wheel_007
+    400028: Wheel_008
+    400030: Wheel_009
+    400032: Wheel_010
+    400034: Wheel_011
+    400036: Wheel_012
+    400038: Wheel_013
+    400040: Cube
+    2100000: Material
+    2100002: unnamed
+    2300000: //RootNode
+    2300002: Track_L
+    2300004: Track_R
+    2300006: TrackCurve_L
+    2300008: TrackCurve_R
+    2300010: Wheel
+    2300012: Wheel_001
+    2300014: Wheel_002
+    2300016: Wheel_003
+    2300018: Wheel_004
+    2300020: Wheel_005
+    2300022: Wheel_006
+    2300024: Wheel_007
+    2300026: Wheel_008
+    2300028: Wheel_009
+    2300030: Wheel_010
+    2300032: Wheel_011
+    2300034: Wheel_012
+    2300036: Wheel_013
+    2300038: Cube
+    3300000: //RootNode
+    3300002: Track_L
+    3300004: Track_R
+    3300006: TrackCurve_L
+    3300008: TrackCurve_R
+    3300010: Wheel
+    3300012: Wheel_001
+    3300014: Wheel_002
+    3300016: Wheel_003
+    3300018: Wheel_004
+    3300020: Wheel_005
+    3300022: Wheel_006
+    3300024: Wheel_007
+    3300026: Wheel_008
+    3300028: Wheel_009
+    3300030: Wheel_010
+    3300032: Wheel_011
+    3300034: Wheel_012
+    3300036: Wheel_013
+    3300038: Cube
+    4300000: Cube
+    4300002: Track_L
+    4300004: Track_R
+    4300006: Wheel_013
+    4300008: Wheel_012
+    4300010: Wheel_011
+    4300012: Wheel_010
+    4300014: Wheel_009
+    4300016: Wheel_008
+    4300018: Wheel_007
+    4300020: Wheel_006
+    4300022: Wheel_005
+    4300024: Wheel_004
+    4300026: Wheel_003
+    4300028: Wheel_002
+    4300030: Wheel_001
+    4300032: Wheel
+    4300034: TrackCurve_L
+    4300036: TrackCurve_R
+    7400000: Default Take
+    9500000: //RootNode
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 3
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 1
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

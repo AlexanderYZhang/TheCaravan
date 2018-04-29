@@ -1,70 +1,35 @@
-﻿using UnityEngine;
-using System.Collections;
- 
-public class CameraController: MonoBehaviour
-{
- 
-	/*
-	EXTENDED FLYCAM
-		Desi Quintans (CowfaceGames.com), 17 August 2012.
-		Based on FlyThrough.js by Slin (http://wiki.unity3d.com/index.php/FlyThrough), 17 May 2011.
- 
-	LICENSE
-		Free as in speech, and free as in beer.
- 
-	FEATURES
-		WASD/Arrows:    Movement
-		          Q:    Climb
-		          E:    Drop
-                      Shift:    Move faster
-                    Control:    Move slower
-                        End:    Toggle cursor locking to screen (you can also press Ctrl+P to toggle play mode on and off).
-	*/
- 
-	public float cameraSensitivity = 90;
-	public float climbSpeed = 4;
-	public float normalMoveSpeed = 10;
-	public float slowMoveFactor = 0.25f;
-	public float fastMoveFactor = 3;
- 
-	private float rotationX = 0.0f;
-	private float rotationY = 0.0f;
- 
-	void Start ()
-	{
-		Cursor.lockState = CursorLockMode.None;
-	}
- 
-	void Update ()
-	{
-		if (Input.GetMouseButton(0)) {
-			rotationX += Input.GetAxis("Mouse X") * cameraSensitivity * Time.deltaTime;
-			rotationY += Input.GetAxis("Mouse Y") * cameraSensitivity * Time.deltaTime;
-			rotationY = Mathf.Clamp (rotationY, -90, 90);
- 
-			transform.localRotation = Quaternion.AngleAxis(rotationX, Vector3.up);
-			transform.localRotation *= Quaternion.AngleAxis(rotationY, Vector3.left);
-		}
- 
-	 	if (Input.GetKey (KeyCode.LeftShift) || Input.GetKey (KeyCode.RightShift))
-	 	{
-			transform.position += transform.forward * (normalMoveSpeed * fastMoveFactor) * Input.GetAxis("Vertical") * Time.deltaTime;
-			transform.position += transform.right * (normalMoveSpeed * fastMoveFactor) * Input.GetAxis("Horizontal") * Time.deltaTime;
-	 	}
-	 	else if (Input.GetKey (KeyCode.LeftControl) || Input.GetKey (KeyCode.RightControl))
-	 	{
-			transform.position += transform.forward * (normalMoveSpeed * slowMoveFactor) * Input.GetAxis("Vertical") * Time.deltaTime;
-			transform.position += transform.right * (normalMoveSpeed * slowMoveFactor) * Input.GetAxis("Horizontal") * Time.deltaTime;
-	 	}
-	 	else
-	 	{
-	 		transform.position += transform.forward * normalMoveSpeed * Input.GetAxis("Vertical") * Time.deltaTime;
-			transform.position += transform.right * normalMoveSpeed * Input.GetAxis("Horizontal") * Time.deltaTime;
-	 	}
- 
- 
-		if (Input.GetKey (KeyCode.Q)) {transform.position += transform.up * climbSpeed * Time.deltaTime;}
-		if (Input.GetKey (KeyCode.E)) {transform.position -= transform.up * climbSpeed * Time.deltaTime;}
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
+public class CameraController : MonoBehaviour {
+
+	public Transform target;
+	public Vector3 offset;
+	public float pitch = 2;
+	public float zoomSpeed = 4f;
+	public float minZoom = 5f;
+	public float maxZoom = 15f;
+	public float yawSpeed = 100f;
+	private float currentZoom = 10;
+	private float currentYaw = 0f;
+	private float currentPitch = 0f;
+	
+	// Use this for initialization
+	void Update() {
+		currentZoom += Input.GetAxis("Mouse ScrollWheel") * zoomSpeed;
+		currentZoom = Mathf.Clamp(currentZoom, minZoom, maxZoom);
+
+		currentYaw -= Input.GetAxis("Horizontal") * yawSpeed * Time.deltaTime;
+        currentPitch -= Input.GetAxis("Vertical") * yawSpeed * Time.deltaTime;
+		currentPitch = Mathf.Clamp(currentPitch, -30f, 30f);
 	}
+	void LateUpdate() {
+		transform.position = target.position - offset * currentZoom;
+        transform.RotateAround(target.position, Vector3.right, currentPitch);
+        transform.LookAt(target.position + Vector3.up * pitch);
+        transform.RotateAround(target.position, Vector3.up, currentYaw);
+
+
+    }
 }
