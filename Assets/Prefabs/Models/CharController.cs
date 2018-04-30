@@ -10,6 +10,9 @@ public class CharController : MonoBehaviour {
     public GameObject canvas;
     public NavMeshAgent agent;
 
+    // Distance Params
+    public float carActivationDist;
+
     // Character Parameter
     private Animator anim;
     private bool placed;
@@ -36,11 +39,25 @@ public class CharController : MonoBehaviour {
         message = GameObject.Find("MessagePanel");
         itemBar = GameObject.Find("ItemBarPanel");
         message.SetActive(false);
-        texts[0].text = "BLANK";
+        texts[0].text = "";
     }
 
-	// Update is called once per frame
-	void Update () {
+    void OnTriggerEnter(Collider other) {
+        if (other.name == car.name) {
+            texts[0].text = "Press E to Enter";
+            message.SetActive(true);
+        }
+    }
+
+    void OnTriggerExit(Collider other) {
+        if (other.name == car.name) {
+            texts[0].text = "";
+            message.SetActive(false);
+        }
+    }
+
+    // Update is called once per frame
+    void Update () {
         if (!agent.isActiveAndEnabled && GetComponent<Rigidbody>().velocity.y == 0) {
             agent.enabled = true;
         } else if (agent.isActiveAndEnabled) {
