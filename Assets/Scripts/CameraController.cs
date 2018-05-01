@@ -47,7 +47,5 @@ public class CameraController : MonoBehaviour {
         transform.LookAt(target.position + Vector3.up * pitch);
         transform.RotateAround(target.position, Vector3.right, currentPitch);
         transform.RotateAround(target.position, Vector3.up, currentYaw);
-
-
     }
 }
