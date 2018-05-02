@@ -11,9 +11,6 @@ public class CharController : MonoBehaviour {
     public GameObject marker;
     public NavMeshAgent agent;
 
-    // Distance Params
-    public float carActivationDist;
-
     // Character Parameter
     private Animator anim;
     private bool placed;
@@ -21,6 +18,7 @@ public class CharController : MonoBehaviour {
     private GameObject message;
     private GameObject itemBar;
 
+    // Vehicle Check
     private bool closeToVehicle;
     private bool inVehicle;
 
@@ -35,10 +33,12 @@ public class CharController : MonoBehaviour {
         itemBar = GameObject.Find("ItemBarPanel");
 
         placed = false;
-        message.SetActive(false);
         texts[0].text = "";
-        inVehicle = false;
+        message.SetActive(false);
+
         closeToVehicle = false;
+        inVehicle = false;
+
         marker.SetActive(false);
     }
 
@@ -61,40 +61,49 @@ public class CharController : MonoBehaviour {
         }
     }
 
+    public void EnterVehicle() {
+        message.SetActive(false);
+        texts[0].text = "";
+        inVehicle = true;
+        gameObject.SetActive(false);
+    }
+
+    public void ExitVehicle(Vector3 newPos) {
+        message.SetActive(true);
+        texts[0].text = "Press E to Enter";
+        inVehicle = false;
+        transform.position = newPos;
+        gameObject.SetActive(true);
+    }
+
+    public bool InsideVehicle() {
+        return inVehicle;
+    }
+
     // Update is called once per frame
     void Update () {
         if (!agent.isActiveAndEnabled && GetComponent<Rigidbody>().velocity.y == 0) {
             agent.enabled = true;
         } else if (agent.isActiveAndEnabled) {
-            if (closeToVehicle && !inVehicle && Input.GetKeyDown(KeyCode.E)) {
-                gameObject.SetActive(false);
-                texts[0].text = "Press E to Exit";
-                message.SetActive(true);
-                inVehicle = true;
-            } else if (inVehicle && Input.GetKeyDown(KeyCode.E)) {
-                gameObject.SetActive(true);
-                inVehicle = false;
+            if (closeToVehicle && Input.GetKeyDown(KeyCode.E)) {
+                EnterVehicle();
             }
-            if (!inVehicle) {
-                bool running = Input.GetKey(KeyCode.LeftShift);
+            bool running = Input.GetKey(KeyCode.LeftShift);
 
-                if (Input.GetMouseButtonDown(0)) {
-                    Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-                    RaycastHit hit;
-                    int layerMask = groundLayer;
-                    if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask)) {
-                        agent.SetDestination(hit.point);
-                        marker.transform.position = new Vector3(hit.point.x, 0, hit.point.z);
-                        marker.SetActive(true);
-                    }
+            if (Input.GetMouseButton(0)) {
+                Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+                RaycastHit hit;
+                int layerMask = groundLayer;
+                if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask)) {
+                    agent.SetDestination(hit.point);
+                    marker.transform.position = new Vector3(hit.point.x, 0, hit.point.z);
+                    marker.SetActive(true);
                 }
-
-                agent.speed = running ? 15f : 5f;
-                float animSpeedPct = (running ? 1.0f : 0.5f) * (agent.hasPath ? 1 : 0);
-                anim.SetFloat("speedPct", animSpeedPct);
-            } else {
-
             }
+
+            agent.speed = running ? 15f : 5f;
+            float animSpeedPct = (running ? 1.0f : 0.5f) * (agent.hasPath ? 1 : 0);
+            anim.SetFloat("speedPct", animSpeedPct);
         }
     }
 
