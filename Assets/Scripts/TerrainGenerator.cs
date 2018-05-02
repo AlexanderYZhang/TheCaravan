@@ -73,7 +73,8 @@ public class TerrainGenerator : MonoBehaviour {
 		meshRenderer.material = material;
 		meshCollider.sharedMesh = meshFilter.mesh;
 		meshObject.transform.position = new Vector3(scale * ((width - 1) / 2), 0, scale * ((height - 1) / 2));
-
+		// 8 is the ground layer
+		meshObject.layer = 8;
 		player.transform.position = new Vector3(width*3/2, 1.5f, height*3/2);
 	}
 	
@@ -83,8 +84,8 @@ public class TerrainGenerator : MonoBehaviour {
 		protrusionBoard = new int[height, width];
 
 		int[] distribution = {0,0,0,0,0,0,0,0,0,0,0};
-		for (int x = 0; x < height; x++) {
-			for (int y = 0; y < width; y++) {
+		for (int x = 2; x < height; x++) {
+			for (int y = 2; y < width; y++) {
 				int tileIndex = randomTile(x,y);
 				float randomTree = Random.Range(0, 2f);
 				
@@ -191,7 +192,7 @@ public class TerrainGenerator : MonoBehaviour {
 		}
 		treeToInstantiate.transform.SetParent(treeHolder);
 		treeToInstantiate.transform.localScale = treeScale;
-	}
+    }
 
 	public int randomTile(int x, int y) {
 		float coordX = ((float)x / width) * samplingScale + offsetX;

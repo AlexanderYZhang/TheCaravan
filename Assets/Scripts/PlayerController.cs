@@ -1,40 +1,61 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.AI;
 
+[RequireComponent(typeof(PlayerMotor))]
 public class PlayerController : MonoBehaviour {
-	public float speed { get; set; }
-    public float angularSpeed { get; set; }
-    public float jumpForce { get; set; }
+	public Interactable focus;
+	public LayerMask movementMask;
+	public LayerMask interactionMask;
+	PlayerMotor motor;
+	Camera camera;
 
-	private Rigidbody rb;
-
-	// Use this for initialization
-	void Start () {
-		rb = GetComponent<Rigidbody> ();
-
-		this.speed = 10.0f;
-		this.angularSpeed = 2.0f;
-        this.jumpForce = 20.0f;
-    }
-
-	// Update is called once per frame
-	void Update ()
-    {
-
+	void Start() {
+		motor = GetComponent<PlayerMotor>();
+		camera = Camera.main;
 	}
 
-	// Physics stuff called before physics calculations
-	void FixedUpdate() {
-		float moveVertical = Input.GetAxis ("Vertical");
-		float moveHorizontal = Input.GetAxis("Horizontal");
+	void Update() {
+		if (Input.GetMouseButtonDown(0)) {
+			Ray ray = camera.ScreenPointToRay(Input.mousePosition);
+			RaycastHit hit;
 
-		Vector3 rotation = new Vector3 (0, moveHorizontal, 0);
-        Vector3 upwardsVelocity = new Vector3(0, rb.velocity.y, 0);
+			if (Physics.Raycast(ray, out hit, movementMask)) {
+				motor.MoveToPoint(hit.point);
 
-        rb.velocity = (transform.forward * this.speed * moveVertical) + upwardsVelocity;
-       
-		transform.Rotate(rotation * this.angularSpeed);
+				SetFocus(null);
+			}
+		}
+
+		if (Input.GetMouseButtonDown(1)) {
+            Ray ray = camera.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+
+            if (Physics.Raycast(ray, out hit, 100))
+            {
+				Interactable interactable = hit.collider.GetComponent<Interactable>();
+				Debug.Log(hit.collider);
+				if (interactable != null)
+				{
+					SetFocus(interactable);			
+				}
+            }
+
+        }
 	}
+
+	void SetFocus(Interactable newFocus) {
+		if (focus != newFocus && focus != null) {
+			focus.OnDefocused();
+		}
+
+		focus = newFocus;
+	
+		if (focus != null) {
+			focus.OnFocused(transform);
+		}
+		
+		motor.FollowTarget(newFocus);
+	}	
 }
