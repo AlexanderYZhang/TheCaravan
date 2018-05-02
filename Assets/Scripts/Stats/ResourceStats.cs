@@ -6,6 +6,7 @@ public class ResourceStats : MonoBehaviour {
     public int maxHealth = 5;
     public int currentHealth { get; private set; }
 
+	public event System.Action<int,int> OnHealthChanged;
     void Awake()
     {
         currentHealth = maxHealth;
@@ -15,6 +16,10 @@ public class ResourceStats : MonoBehaviour {
     {
         currentHealth -= damage;
         Debug.LogWarning("takes damage");
+
+		if (OnHealthChanged != null) {
+			OnHealthChanged(maxHealth, currentHealth);
+		}
 
         if (currentHealth <= 0)
         {

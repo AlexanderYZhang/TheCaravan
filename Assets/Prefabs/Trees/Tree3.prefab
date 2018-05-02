@@ -11,6 +11,21 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 1882619317011318}
   m_IsPrefabParent: 1
+--- !u!1 &1519358165902050
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4751963655126444}
+  m_Layer: 9
+  m_Name: HealthUITarget
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1837915712115574
 GameObject:
   m_ObjectHideFlags: 0
@@ -40,6 +55,7 @@ GameObject:
   - component: {fileID: 64393363786055332}
   - component: {fileID: 114260001147795006}
   - component: {fileID: 114145470309093264}
+  - component: {fileID: 114071376761409780}
   m_Layer: 9
   m_Name: Mesh1_Group1_Model
   m_TagString: Untagged
@@ -100,8 +116,22 @@ Transform:
   m_Children:
   - {fileID: 4196668981695546}
   - {fileID: 4634555560257460}
+  - {fileID: 4751963655126444}
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4751963655126444
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1519358165902050}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1, y: 6, z: -0.67}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4643037640427734}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &23236660604974584
 MeshRenderer:
@@ -158,6 +188,19 @@ MeshCollider:
   m_CookingOptions: 14
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: 0c1a1f16ffc704d36b6cb6c660659dc4, type: 3}
+--- !u!114 &114071376761409780
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1855763790933704}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a053fec6e3a79ff4092996d562267e0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiPrefab: {fileID: 1012196340326282, guid: 72608a341a098ca41ab443f467b90ebb, type: 2}
+  target: {fileID: 4751963655126444}
 --- !u!114 &114145470309093264
 MonoBehaviour:
   m_ObjectHideFlags: 1

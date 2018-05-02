@@ -26,19 +26,19 @@ public class CameraController : MonoBehaviour {
 		currentYaw -= Input.GetAxis("Horizontal") * yawSpeed * Time.deltaTime;
         currentPitch -= Input.GetAxis("Vertical") * yawSpeed * Time.deltaTime;
 
-        if (!dragging && Input.GetMouseButtonDown(1)) {
-            dragging = true;
-            prevMouseLocation = Input.mousePosition;
-        } else if (dragging && Input.GetMouseButton(1)) {
-            Vector3 change = (Input.mousePosition - prevMouseLocation).normalized;
+        // if (!dragging && Input.GetMouseButtonDown(1)) {
+        //     dragging = true;
+        //     prevMouseLocation = Input.mousePosition;
+        // } else if (dragging && Input.GetMouseButton(1)) {
+        //     Vector3 change = (Input.mousePosition - prevMouseLocation).normalized;
 
-            currentYaw += change.x * yawSpeed * Time.deltaTime;
-            currentPitch += change.y * yawSpeed * Time.deltaTime;
+        //     currentYaw += change.x * yawSpeed * Time.deltaTime;
+        //     currentPitch += change.y * yawSpeed * Time.deltaTime;
 
-            prevMouseLocation = Input.mousePosition;
-        } else if (dragging && Input.GetMouseButtonUp(1)) {
-            dragging = false;
-        }
+        //     prevMouseLocation = Input.mousePosition;
+        // } else if (dragging && Input.GetMouseButtonUp(1)) {
+        //     dragging = false;
+        // }
 
 		currentPitch = Mathf.Clamp(currentPitch, -30f, 30f);
 	}
