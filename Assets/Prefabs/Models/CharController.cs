@@ -24,6 +24,8 @@ public class CharController : MonoBehaviour {
     private bool closeToVehicle;
     private bool inVehicle;
 
+    private int groundLayer = 1 << 8;
+
     // Use this for initialization
     void Start () {
         anim = GetComponent<Animator>();
@@ -79,9 +81,10 @@ public class CharController : MonoBehaviour {
                 if (Input.GetMouseButtonDown(0)) {
                     Ray ray = cam.ScreenPointToRay(Input.mousePosition);
                     RaycastHit hit;
-                    if (Physics.Raycast(ray, out hit)) {
+                    int layerMask = groundLayer;
+                    if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask)) {
                         agent.SetDestination(hit.point);
-                        marker.transform.position = hit.point;
+                        marker.transform.position = new Vector3(hit.point.x, 0, hit.point.z);
                         marker.SetActive(true);
                     }
                 }

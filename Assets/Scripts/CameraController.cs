@@ -24,7 +24,7 @@ public class CameraController : MonoBehaviour {
 		currentZoom = Mathf.Clamp(currentZoom, minZoom, maxZoom);
 
 		currentYaw -= Input.GetAxis("Horizontal") * yawSpeed * Time.deltaTime;
-        currentPitch -= Input.GetAxis("Vertical") * yawSpeed * Time.deltaTime;
+        currentPitch += Input.GetAxis("Vertical") * yawSpeed * Time.deltaTime;
 
         // if (!dragging && Input.GetMouseButtonDown(1)) {
         //     dragging = true;
