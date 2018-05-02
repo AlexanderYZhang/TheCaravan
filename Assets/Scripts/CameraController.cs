@@ -44,8 +44,8 @@ public class CameraController : MonoBehaviour {
 	}
 	void LateUpdate() {
 		transform.position = target.position - offset * currentZoom;
-        transform.LookAt(target.position + Vector3.up * pitch);
         transform.RotateAround(target.position, Vector3.right, currentPitch);
+        transform.LookAt(target.position + Vector3.up * pitch);
         transform.RotateAround(target.position, Vector3.up, currentYaw);
     }
 }
