@@ -571,6 +571,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 1395160082}
   player: {fileID: 1548176800}
+  canvas: {fileID: 931877590}
   marker: {fileID: 852534847}
   agent: {fileID: 146624948}
 --- !u!208 &146624946
@@ -3526,7 +3527,6 @@ MonoBehaviour:
   canvas: {fileID: 931877590}
   marker: {fileID: 852534847}
   agent: {fileID: 1548176803}
-  carActivationDist: 0
 --- !u!95 &1548176805
 Animator:
   serializedVersion: 3
