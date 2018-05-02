@@ -15,8 +15,8 @@ public class CameraController : MonoBehaviour {
 	private float currentYaw = 0f;
 	private float currentPitch = 0f;
 
-    private bool dragging = false;
-    private Vector3 prevMouseLocation;
+    // private bool dragging = false;
+    // private Vector3 prevMouseLocation;
 
 	// Use this for initialization
 	void Update() {
