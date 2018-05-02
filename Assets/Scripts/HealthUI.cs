@@ -26,15 +26,15 @@ public class HealthUI : MonoBehaviour {
                 break;
 			}
 		}
-
+		Debug.Log(ui);
 		GetComponent<ResourceStats>().OnHealthChanged += OnHealthChanged;
 	}
 
 	void OnHealthChanged(int maxHealth, int currentHealth) {
+		Debug.Log(ui);
 		if (ui != null) {
             ui.gameObject.SetActive(true);
 			lastMadeVisibleTime = Time.time;
-
             float healthPercent = currentHealth / (float)maxHealth;
             healthSlider.fillAmount = healthPercent;
             if (currentHealth <= 0)
