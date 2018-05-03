@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class TerrainGenerator : MonoBehaviour {
-	public GameObject player;
-	public GameObject[] Tile;
 	public GameObject[] Trees;
 	public GameObject[] Protrusions;
 	public GameObject[] Rocks;
@@ -17,12 +15,13 @@ public class TerrainGenerator : MonoBehaviour {
 
 	private float offsetX;
 	private float offsetY;
-	private Transform tileHolder;
 	private Transform treeHolder;
 	private Transform protrusionHolder;
 	private Transform resourceHolder;
 	private int[,] board;
 	private int[,] protrusionBoard;
+
+	PlayerManager playerManager;
 
 	private enum TerrainItem {
 		Nothing = 0,
@@ -32,17 +31,22 @@ public class TerrainGenerator : MonoBehaviour {
 		Resource = 8
 	};
 
-	// Use this for initialization
-	void Start () {
+	void Start() {
+		playerManager = PlayerManager.instance;
+		GenerateMap();
+	}
+
+	public void GenerateMap () {
 		int heightCoord = height;
 		int widthCoord = width;
-		offsetX = Random.Range(0, 9999f);
+
+        Random.InitState((int)System.DateTime.Now.Ticks);
+
+        offsetX = Random.Range(0, 9999f);
 		offsetY = Random.Range(0, 9999f);
 		
-		Random.InitState((int)System.DateTime.Now.Ticks);
-		InitBoard();
+		InitBoardArray();
 
-		tileHolder = new GameObject("Board").transform;
 		treeHolder = new GameObject("Trees").transform;
 		protrusionHolder = new GameObject("Protrusions").transform;
 		resourceHolder = new GameObject("Resources").transform;
@@ -75,10 +79,31 @@ public class TerrainGenerator : MonoBehaviour {
 		meshObject.transform.position = new Vector3(scale * ((width - 1) / 2), 0, scale * ((height - 1) / 2));
 		// 8 is the ground layer
 		meshObject.layer = 8;
-		player.transform.position = new Vector3(width*3/2, 1.5f, height*3/2);
+		playerManager.player.transform.position = new Vector3(2, 1, 2);
 	}
 	
-	private void InitBoard() {
+	public void DestroyMap() {
+		if (treeHolder != null) 
+		{
+			Destroy(treeHolder.gameObject);
+		}
+        if (protrusionHolder != null)
+        {
+            Destroy(protrusionHolder.gameObject);
+        }
+        if (resourceHolder != null)
+        {
+            Destroy(resourceHolder.gameObject);
+        }
+		if (GameObject.Find("Terrain")) 
+		{
+			Destroy(GameObject.Find("Terrain"));
+		}
+		playerManager.player.GetComponent<PlayerController>().SetFocus(null);
+        playerManager.player.GetComponent<PlayerMotor>().StopMoveToPoint();
+	}
+
+	private void InitBoardArray() {
 		int numRocks = 50, i = 0;
 		board = new int[height, width];
 		protrusionBoard = new int[height, width];
@@ -116,6 +141,15 @@ public class TerrainGenerator : MonoBehaviour {
 
 		for (i = 0; i < distribution.Length; i++) {
 			print(distribution[i]);
+		}
+
+		//Clear spawn area
+
+		for (int x = 0; x < 20; x++) {
+			for (int y = 0; y < 20; y++) {
+				board[x,y] = (int) TerrainItem.Nothing;
+				protrusionBoard[x,y] = (int) TerrainItem.Nothing;
+			}
 		}
 	}
 
@@ -203,10 +237,6 @@ public class TerrainGenerator : MonoBehaviour {
 
 		int index = (int)sample / 10;
 		return index;
-	}
-	// Update is called once per frame
-	void Update () {
-		
 	}
 
     Mesh CreateMesh(float width, float height)

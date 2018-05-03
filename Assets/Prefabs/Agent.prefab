@@ -23,6 +23,10 @@ GameObject:
   - component: {fileID: 23591689665961586}
   - component: {fileID: 195306368813035920}
   - component: {fileID: 114311650620538522}
+  - component: {fileID: 114520444537816078}
+  - component: {fileID: 114615566728370060}
+  - component: {fileID: 114848213524510194}
+  - component: {fileID: 114801674852224178}
   m_Layer: 0
   m_Name: Agent
   m_TagString: Untagged
@@ -90,9 +94,66 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1792753677832708}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c9472e73a59274b9b8da79d72004bd8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114520444537816078
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1792753677832708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60b55946a9fd56845a0cf52d5fede6dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  damage:
+    baseValue: 1
+  gathering:
+    baseValue: 1
+--- !u!114 &114615566728370060
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1792753677832708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93d3a7973b54547d490f253312052782, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  focus: {fileID: 0}
+  movementMask:
+    serializedVersion: 2
+    m_Bits: 256
+  interactionMask:
+    serializedVersion: 2
+    m_Bits: 512
+--- !u!114 &114801674852224178
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1792753677832708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11e01a775dc6c304db5e1499759026d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gatherSpeed: 1
+--- !u!114 &114848213524510194
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1792753677832708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eeafb20328e0c2b4eb561d3690c9e86d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!195 &195306368813035920
@@ -104,8 +165,8 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 10
-  m_Acceleration: 25
+  m_Speed: 20
+  m_Acceleration: 300
   avoidancePriority: 50
   m_AngularSpeed: 120
   m_StoppingDistance: 0

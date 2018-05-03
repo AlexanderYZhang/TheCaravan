@@ -45,7 +45,8 @@ public class PlayerController : MonoBehaviour {
         }
 	}
 
-	void SetFocus(Interactable newFocus) {
+	public void SetFocus(Interactable newFocus) {
+		Debug.Log(newFocus);
 		if (focus != newFocus && focus != null) {
 			focus.OnDefocused();
 		}

@@ -21,6 +21,10 @@ public class PlayerMotor : MonoBehaviour
         agent.SetDestination(point);
     }
 
+    public void StopMoveToPoint() {
+        agent.ResetPath();
+    }
+
     public void FollowTarget(Interactable newFocus)
     {
         if (newFocus != null)
