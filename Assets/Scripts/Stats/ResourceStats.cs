@@ -29,6 +29,15 @@ public class ResourceStats : MonoBehaviour {
 
     public virtual void Die()
     {	
-		Destroy(gameObject.transform.parent.gameObject);
+        if (gameObject.CompareTag("Tree")) {
+            Inventory.instance.AddWood(5);
+        }
+
+        if (gameObject.CompareTag("Rock"))
+        {
+            Inventory.instance.AddStone(5);
+        }
+
+        Destroy(gameObject.transform.parent.gameObject);
     }
 }

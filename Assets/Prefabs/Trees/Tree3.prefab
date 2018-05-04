@@ -58,7 +58,7 @@ GameObject:
   - component: {fileID: 114071376761409780}
   m_Layer: 9
   m_Name: Mesh1_Group1_Model
-  m_TagString: Untagged
+  m_TagString: Tree
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
