@@ -11,12 +11,14 @@ public class CharController : MonoBehaviour {
     public GameObject marker;
     public NavMeshAgent agent;
 
+    private CarController carController;
+    private CameraController cameraController;
+
     // Character Parameter
     private Animator anim;
     private bool placed;
     private Text[] texts;
     private GameObject message;
-    private GameObject itemBar;
 
     // Vehicle Check
     private bool closeToVehicle;
@@ -30,7 +32,9 @@ public class CharController : MonoBehaviour {
         anim.SetTrigger("moving");
         texts = canvas.GetComponentsInChildren<Text>();
         message = GameObject.Find("MessagePanel");
-        itemBar = GameObject.Find("ItemBarPanel");
+
+        carController = car.GetComponent<CarController>();
+        cameraController = cam.GetComponent<CameraController>();
 
         placed = false;
         texts[0].text = "";
@@ -62,17 +66,21 @@ public class CharController : MonoBehaviour {
     }
 
     public void EnterVehicle() {
-        message.SetActive(false);
-        texts[0].text = "";
+        texts[0].text = "Press E to Exit";
         inVehicle = true;
+        cameraController.target = car.transform;
+        marker.transform.position = new Vector3(car.transform.position.x, 0, car.transform.position.z);
+        carController.obstacle.enabled = false;
+        carController.setOffset(transform.position);
         gameObject.SetActive(false);
     }
 
     public void ExitVehicle(Vector3 newPos) {
-        message.SetActive(true);
-        texts[0].text = "Press E to Enter";
         inVehicle = false;
         transform.position = newPos;
+        cameraController.target = transform;
+        marker.transform.position = new Vector3(transform.position.x, 0, transform.position.z);
+        carController.agent.enabled = false;
         gameObject.SetActive(true);
     }
 
@@ -88,22 +96,24 @@ public class CharController : MonoBehaviour {
             if (closeToVehicle && Input.GetKeyDown(KeyCode.E)) {
                 EnterVehicle();
             }
-            bool running = Input.GetKey(KeyCode.LeftShift);
+            if (!inVehicle) {
+                bool running = Input.GetKey(KeyCode.LeftShift);
 
-            if (Input.GetMouseButton(0)) {
-                Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-                RaycastHit hit;
-                int layerMask = groundLayer;
-                if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask)) {
-                    agent.SetDestination(hit.point);
-                    marker.transform.position = new Vector3(hit.point.x, 0, hit.point.z);
-                    marker.SetActive(true);
+                if (Input.GetMouseButton(0)) {
+                    Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+                    RaycastHit hit;
+                    int layerMask = groundLayer;
+                    if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask)) {
+                        agent.SetDestination(hit.point);
+                        marker.transform.position = new Vector3(hit.point.x, 0, hit.point.z);
+                        marker.SetActive(true);
+                    }
                 }
-            }
 
-            agent.speed = running ? 15f : 5f;
-            float animSpeedPct = (running ? 1.0f : 0.5f) * (agent.hasPath ? 1 : 0);
-            anim.SetFloat("speedPct", animSpeedPct);
+                agent.speed = running ? 15f : 5f;
+                float animSpeedPct = (running ? 1.0f : 0.5f) * (agent.hasPath ? 1 : 0);
+                anim.SetFloat("speedPct", animSpeedPct);
+            }
         }
     }
 
