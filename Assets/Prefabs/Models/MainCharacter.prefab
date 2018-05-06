@@ -185,11 +185,13 @@ GameObject:
   m_Component:
   - component: {fileID: 4273321307273476}
   - component: {fileID: 95919130670348900}
-  - component: {fileID: 114253546053032074}
-  - component: {fileID: 54723488112415022}
-  - component: {fileID: 136487007611059646}
-  - component: {fileID: 114084216139414514}
   - component: {fileID: 195465654920753090}
+  - component: {fileID: 136487007611059646}
+  - component: {fileID: 54723488112415022}
+  - component: {fileID: 114253546053032074}
+  - component: {fileID: 114084216139414514}
+  - component: {fileID: 114934144171159858}
+  - component: {fileID: 114353872438023958}
   m_Layer: 10
   m_Name: MainCharacter
   m_TagString: Player
@@ -803,6 +805,34 @@ MonoBehaviour:
   marker: {fileID: 1541134270939922, guid: 8e78e4127eda0c14bb3c000d6d09f585, type: 2}
   agent: {fileID: 195465654920753090}
   focus: {fileID: 0}
+--- !u!114 &114353872438023958
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1395338324295528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60b55946a9fd56845a0cf52d5fede6dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  damage:
+    baseValue: 1
+  gathering:
+    baseValue: 1
+--- !u!114 &114934144171159858
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1395338324295528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11e01a775dc6c304db5e1499759026d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gatherSpeed: 1
 --- !u!136 &136487007611059646
 CapsuleCollider:
   m_ObjectHideFlags: 1

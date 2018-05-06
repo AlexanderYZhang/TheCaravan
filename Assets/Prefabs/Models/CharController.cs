@@ -107,11 +107,11 @@ public class CharController : MonoBehaviour {
                 RaycastHit hit;
                 int layerMask = groundLayer;
                 if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask)) {
-                    // agent.SetDestination(hit.point);
                     motor.MoveToPoint(hit.point);
 
                     marker.transform.position = new Vector3(hit.point.x, 0, hit.point.z);
                     marker.SetActive(true);
+                    SetFocus(null);
                 }
             }
             if (Input.GetMouseButtonDown(1))
