@@ -58,6 +58,12 @@ public class CarController : MonoBehaviour {
             if (!agent.enabled) {
                 obstacle.enabled = true;
             }
+            float distance = Vector3.Distance(player.transform.position, transform.position);
+            if (distance <= 20f) {
+                playerController.closeToVehicle = true;
+            } else {
+                playerController.closeToVehicle = false;
+            }
         }
     }
 }

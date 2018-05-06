@@ -22,7 +22,7 @@ public class CharController : MonoBehaviour {
     private GameObject message;
 
     // Vehicle Check
-    private bool closeToVehicle;
+    public bool closeToVehicle;
     private bool inVehicle;
 
     private int groundLayer = 1 << 8;
@@ -53,22 +53,22 @@ public class CharController : MonoBehaviour {
     }
 
     void OnTriggerEnter(Collider other) {
-        if (other.name == car.name) {
-            texts[0].text = "Press E to Enter";
-            message.SetActive(true);
-            closeToVehicle = true;
-        }
         if (other.name == marker.name) {
             marker.SetActive(false);
         }
     }
 
-    void OnTriggerExit(Collider other) {
-        if (other.name == car.name) {
-            texts[0].text = "";
-            message.SetActive(false);
-            closeToVehicle = false;
-        }
+    void setEnterText() {
+        texts[0].text = "Press E to Enter";
+        message.SetActive(true);
+        closeToVehicle = true;
+    }
+
+    void removeEnterText() {
+        texts[0].text = "";
+        message.SetActive(false);
+        closeToVehicle = false;
+
     }
 
     public void EnterVehicle() {
@@ -96,8 +96,13 @@ public class CharController : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-        if (closeToVehicle && Input.GetKeyDown(KeyCode.E)) {
-            EnterVehicle();
+        if (closeToVehicle) {
+            setEnterText();
+            if (Input.GetKeyDown(KeyCode.E)) {
+                EnterVehicle();
+            }
+        } else {
+            removeEnterText();
         }
         if (!inVehicle) {
             bool running = Input.GetKey(KeyCode.LeftShift);
@@ -122,9 +127,9 @@ public class CharController : MonoBehaviour {
                 if (Physics.Raycast(ray, out hit, 100))
                 {
                     Interactable interactable = hit.collider.GetComponent<Interactable>();
-                    Debug.Log(hit.collider);
                     if (interactable != null)
                     {
+                        Debug.Log(interactable);
                         SetFocus(interactable);
                     }
                 }
@@ -160,7 +165,7 @@ public class CharController : MonoBehaviour {
         {
             focus.OnFocused(transform);
         }
-
+        Debug.Log(newFocus);
         motor.FollowTarget(newFocus);
     }
 }

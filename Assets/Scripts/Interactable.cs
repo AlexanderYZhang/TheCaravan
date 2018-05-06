@@ -20,12 +20,12 @@ public class Interactable : MonoBehaviour {
 		}
 	}
 
-	public void OnFocused (Transform playerTransform) {
+	public virtual void OnFocused (Transform playerTransform) {
 		isFocus = true;
 		player = playerTransform;
 	}
 
-	public void OnDefocused() {
+	public virtual void OnDefocused() {
 		isFocus = false;
 		player = null;
 	}

@@ -44,6 +44,7 @@ public class PlayerMotor : MonoBehaviour
     {
         if (target != null)
         {
+            Debug.Log(target.position);
             MoveToPoint(target.position);
             FaceTarget();
         }
