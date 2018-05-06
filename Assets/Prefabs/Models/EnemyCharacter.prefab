@@ -130,9 +130,10 @@ GameObject:
   - component: {fileID: 54486537165969304}
   - component: {fileID: 136358840305721678}
   - component: {fileID: 195277713757000806}
+  - component: {fileID: 135992383636442520}
   m_Layer: 10
   m_Name: EnemyCharacter
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -427,7 +428,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1241112176326980}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 9.42, y: 0, z: 4.33}
+  m_LocalPosition: {x: 23, y: 0, z: 14.205}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 4479148203693066}
@@ -787,9 +788,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 195277713757000806}
-  player: {fileID: 0}
+  player: {fileID: 1395338324295528, guid: 1e112603f5de15440a22a72ce9ea28d6, type: 2}
   startTracking: 0
   stopTracking: 0
+  health: 0
+--- !u!135 &135992383636442520
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1241112176326980}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 25
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!136 &136358840305721678
 CapsuleCollider:
   m_ObjectHideFlags: 1

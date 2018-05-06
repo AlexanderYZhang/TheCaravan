@@ -6,18 +6,34 @@ using UnityEngine.AI;
 public class EnemyController : MonoBehaviour {
     public NavMeshAgent agent;
     public GameObject player;
-    public float startTracking;
-    public float stopTracking;
+    public float health;
 
     private Animator anim;
     private bool placed;
     private bool tracking;
 
+    private HashSet<GameObject> enemiesInRange;
+
     // Use this for initialization
     void Start () {
         anim = GetComponent<Animator>();
+        enemiesInRange = new HashSet<GameObject>();
         anim.SetTrigger("moving");
         tracking = false;
+    }
+
+    void OnTriggerEnter(Collider other) {
+        GameObject obj = other.gameObject;
+        if (obj.tag == "Player" || obj.tag == "Turret" || obj.tag == "Vehicle") {
+            enemiesInRange.Add(obj);
+        }
+    }
+
+    void OnTriggerExit(Collider other) {
+        GameObject obj = other.gameObject;
+        if (enemiesInRange.Contains(obj)) {
+            enemiesInRange.Remove(obj);
+        }
     }
 
     // Update is called once per frame
@@ -27,15 +43,7 @@ public class EnemyController : MonoBehaviour {
         } else if (agent.isActiveAndEnabled && player != null) {
             float animSpeedPct = 0;
             float distToPlayer = Vector3.Distance(transform.position, player.transform.position);
-            if (!tracking && distToPlayer < startTracking) {
-                tracking = true;
-            } else if (tracking && distToPlayer > stopTracking) {
-                tracking = false;
-                agent.SetDestination(transform.position);
-            } else if (tracking) {
-                agent.SetDestination(player.transform.position);
-                animSpeedPct = 0.5f;
-            }
+           
             anim.SetFloat("speedPct", animSpeedPct);
         }
     }
