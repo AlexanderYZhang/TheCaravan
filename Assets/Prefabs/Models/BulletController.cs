@@ -14,19 +14,19 @@ public class BulletController : MonoBehaviour {
 
     void OnTriggerEnter(Collider other) {
         GameObject obj = other.gameObject;
-        if (obj.tag == "Enemy") {
-            
+        if (obj.tag == "Enemy" && other is CapsuleCollider) {
+            GameObject.Destroy(gameObject);
         }
     }
 
     // Update is called once per frame
     void Update () {
-	}
-
-    void LateUpdate() {
-        transform.Translate(direction * Time.deltaTime * speed);
         if (Vector3.Distance(transform.position, transform.parent.position) > maxDist) {
             GameObject.Destroy(gameObject);
         }
+    }
+
+    void LateUpdate() {
+        transform.Translate(direction * Time.deltaTime * speed);
     }
 }

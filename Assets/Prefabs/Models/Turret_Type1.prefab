@@ -42,6 +42,7 @@ GameObject:
   - component: {fileID: 95455620361682266}
   - component: {fileID: 208408174948247782}
   - component: {fileID: 114803835234043922}
+  - component: {fileID: 135319590524073486}
   m_Layer: 10
   m_Name: Turret_Type1
   m_TagString: Turret
@@ -56,7 +57,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1349132083361284}
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 23, y: 0, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 0.5000005}
   m_Children:
   - {fileID: 4915947165180508}
@@ -205,8 +206,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   turretHead: {fileID: 1019803299456570}
   scanSpeed: 25
-  rateOfFire: 5
+  rateOfFire: 2
   bulletType: {fileID: 1926478755375340, guid: 2146a9d50ee40e04e99ed97faf5e9435, type: 2}
+--- !u!135 &135319590524073486
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1349132083361284}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 15
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!208 &208408174948247782
 NavMeshObstacle:
   m_ObjectHideFlags: 1
