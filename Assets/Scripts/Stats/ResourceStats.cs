@@ -15,7 +15,6 @@ public class ResourceStats : MonoBehaviour {
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
-        Debug.LogWarning(OnHealthChanged);
 
 		if (OnHealthChanged != null) {
 			OnHealthChanged(maxHealth, currentHealth);

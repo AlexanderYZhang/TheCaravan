@@ -149,7 +149,6 @@ public class CharController : MonoBehaviour {
 
     public void SetFocus(Interactable newFocus)
     {
-        Debug.Log(newFocus);
         if (focus != newFocus && focus != null)
         {
             focus.OnDefocused();

@@ -15,7 +15,6 @@ public class Resource : Interactable {
 	public override void Interact() {
 		base.Interact();
 		
-		Debug.Log(resourceStats.currentHealth);
 		CharacterGather playerGather = playerManager.player.GetComponent<CharacterGather>();
 		if (playerGather != null) {
 			playerGather.Gather(resourceStats);
