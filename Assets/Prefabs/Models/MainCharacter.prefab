@@ -191,7 +191,7 @@ GameObject:
   - component: {fileID: 136487007611059646}
   m_Layer: 10
   m_Name: MainCharacter
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -791,6 +791,7 @@ MonoBehaviour:
   canvas: {fileID: 0}
   marker: {fileID: 0}
   agent: {fileID: 195681141934771312}
+  turret1: {fileID: 1349132083361284, guid: 6d1a33e752f960942bb0c68517f7d966, type: 2}
 --- !u!136 &136487007611059646
 CapsuleCollider:
   m_ObjectHideFlags: 1

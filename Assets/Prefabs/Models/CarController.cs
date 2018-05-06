@@ -16,7 +16,6 @@ public class CarController : MonoBehaviour {
     private CameraController camController;
 
     private Text[] texts;
-    private GameObject message;
     private Vector3 playerOffset;
 
     private int groundLayer = 1 << 8;
@@ -26,7 +25,6 @@ public class CarController : MonoBehaviour {
         playerController = player.GetComponent<CharController>();
         camController = cam.GetComponent<CameraController>();
         texts = canvas.GetComponentsInChildren<Text>();
-        message = GameObject.Find("MessagePanel");
     }
 
     public void setOffset(Vector3 playerPos) {

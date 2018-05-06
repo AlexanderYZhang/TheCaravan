@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Tree
   - Rock
+  - Enemy
+  - Bullet
+  - Turret
   layers:
   - Default
   - TransparentFX

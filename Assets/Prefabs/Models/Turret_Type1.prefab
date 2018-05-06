@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 114803835234043922}
   m_Layer: 10
   m_Name: Turret_Type1
-  m_TagString: Untagged
+  m_TagString: Turret
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -56,7 +56,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1349132083361284}
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 16.817842, y: 0, z: 15.129373}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 0.5000005}
   m_Children:
   - {fileID: 4915947165180508}
@@ -71,7 +71,7 @@ Transform:
   m_GameObject: {fileID: 1019803299456570}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 5}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1.25}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 2}
   m_Children: []
   m_Father: {fileID: 4832070382795444}
   m_RootOrder: 0
@@ -204,8 +204,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   turretHead: {fileID: 1019803299456570}
-  enemyCollection: {fileID: 0}
   scanSpeed: 25
+  rateOfFire: 5
+  bulletType: {fileID: 1926478755375340, guid: 2146a9d50ee40e04e99ed97faf5e9435, type: 2}
 --- !u!208 &208408174948247782
 NavMeshObstacle:
   m_ObjectHideFlags: 1

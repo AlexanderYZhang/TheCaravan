@@ -10,6 +10,7 @@ public class CharController : MonoBehaviour {
     public GameObject canvas;
     public GameObject marker;
     public NavMeshAgent agent;
+    public GameObject turret1;
 
     private CarController carController;
     private CameraController cameraController;
