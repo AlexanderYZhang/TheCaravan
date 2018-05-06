@@ -464,7 +464,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1868459174466754}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -24.596441, y: 0, z: -8.679371}
+  m_LocalPosition: {x: 31, y: 0, z: 52}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children:
   - {fileID: 4580569598505498}
@@ -1434,10 +1434,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30a34c47ec9b2264ab35242de6920005, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 0}
   player: {fileID: 0}
   canvas: {fileID: 0}
-  marker: {fileID: 0}
+  marker: {fileID: 1541134270939922, guid: 8e78e4127eda0c14bb3c000d6d09f585, type: 2}
   agent: {fileID: 195724137268240686}
   obstacle: {fileID: 208050303734688770}
 --- !u!195 &195724137268240686

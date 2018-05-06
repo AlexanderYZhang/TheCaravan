@@ -80,6 +80,7 @@ public class TerrainGenerator : MonoBehaviour {
 		// 8 is the ground layer
 		meshObject.layer = 8;
 		playerManager.player.transform.position = new Vector3(2, 1, 2);
+		playerManager.car.transform.position = new Vector3(25, 1, 15);
 	}
 	
 	public void DestroyMap() {
