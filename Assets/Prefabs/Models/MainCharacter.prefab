@@ -786,11 +786,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bda81b36001afbe4f9b533882ab7795f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 0}
   car: {fileID: 0}
   canvas: {fileID: 0}
   marker: {fileID: 0}
   agent: {fileID: 195681141934771312}
+  focus: {fileID: 0}
 --- !u!136 &136487007611059646
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -878,7 +878,7 @@ NavMeshAgent:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1395338324295528}
-  m_Enabled: 0
+  m_Enabled: 1
   m_AgentTypeID: -1372625422
   m_Radius: 2
   m_Speed: 5

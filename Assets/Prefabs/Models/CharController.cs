@@ -5,11 +5,12 @@ using UnityEngine.AI;
 using UnityEngine.UI;
 
 public class CharController : MonoBehaviour {
-    public Camera cam;
     public GameObject car;
     public GameObject canvas;
     public GameObject marker;
     public NavMeshAgent agent;
+    public Interactable focus;
+
 
     private CarController carController;
     private CameraController cameraController;
@@ -26,6 +27,9 @@ public class CharController : MonoBehaviour {
 
     private int groundLayer = 1 << 8;
 
+    Camera camera;
+    PlayerMotor motor;
+
     // Use this for initialization
     void Start () {
         anim = GetComponent<Animator>();
@@ -34,7 +38,9 @@ public class CharController : MonoBehaviour {
         message = GameObject.Find("MessagePanel");
 
         carController = car.GetComponent<CarController>();
-        cameraController = cam.GetComponent<CameraController>();
+        camera = Camera.main;
+        cameraController = camera.GetComponent<CameraController>();
+        motor = GetComponent<PlayerMotor>();
 
         placed = false;
         texts[0].text = "";
@@ -90,30 +96,44 @@ public class CharController : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-        if (!agent.isActiveAndEnabled && GetComponent<Rigidbody>().velocity.y == 0) {
-            agent.enabled = true;
-        } else if (agent.isActiveAndEnabled) {
-            if (closeToVehicle && Input.GetKeyDown(KeyCode.E)) {
-                EnterVehicle();
-            }
-            if (!inVehicle) {
-                bool running = Input.GetKey(KeyCode.LeftShift);
+        if (closeToVehicle && Input.GetKeyDown(KeyCode.E)) {
+            EnterVehicle();
+        }
+        if (!inVehicle) {
+            bool running = Input.GetKey(KeyCode.LeftShift);
 
-                if (Input.GetMouseButton(0)) {
-                    Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-                    RaycastHit hit;
-                    int layerMask = groundLayer;
-                    if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask)) {
-                        agent.SetDestination(hit.point);
-                        marker.transform.position = new Vector3(hit.point.x, 0, hit.point.z);
-                        marker.SetActive(true);
+            if (Input.GetMouseButton(0)) {
+                Ray ray = camera.ScreenPointToRay(Input.mousePosition);
+                RaycastHit hit;
+                int layerMask = groundLayer;
+                if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask)) {
+                    // agent.SetDestination(hit.point);
+                    motor.MoveToPoint(hit.point);
+
+                    marker.transform.position = new Vector3(hit.point.x, 0, hit.point.z);
+                    marker.SetActive(true);
+                }
+            }
+            if (Input.GetMouseButtonDown(1))
+            {
+                Ray ray = camera.ScreenPointToRay(Input.mousePosition);
+                RaycastHit hit;
+
+                if (Physics.Raycast(ray, out hit, 100))
+                {
+                    Interactable interactable = hit.collider.GetComponent<Interactable>();
+                    Debug.Log(hit.collider);
+                    if (interactable != null)
+                    {
+                        SetFocus(interactable);
                     }
                 }
 
-                agent.speed = running ? 15f : 5f;
-                float animSpeedPct = (running ? 1.0f : 0.5f) * (agent.hasPath ? 1 : 0);
-                anim.SetFloat("speedPct", animSpeedPct);
             }
+
+            agent.speed = running ? 15f : 5f;
+            float animSpeedPct = (running ? 1.0f : 0.5f) * (agent.hasPath ? 1 : 0);
+            anim.SetFloat("speedPct", animSpeedPct);
         }
     }
 
@@ -125,5 +145,23 @@ public class CharController : MonoBehaviour {
         if (!placed) {
             placed = true;
         }
+    }
+
+    public void SetFocus(Interactable newFocus)
+    {
+        Debug.Log(newFocus);
+        if (focus != newFocus && focus != null)
+        {
+            focus.OnDefocused();
+        }
+
+        focus = newFocus;
+
+        if (focus != null)
+        {
+            focus.OnFocused(transform);
+        }
+
+        motor.FollowTarget(newFocus);
     }
 }

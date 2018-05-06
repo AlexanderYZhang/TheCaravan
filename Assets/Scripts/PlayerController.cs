@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-[RequireComponent(typeof(PlayerMotor))]
 public class PlayerController : MonoBehaviour {
 	public Interactable focus;
 	public LayerMask movementMask;

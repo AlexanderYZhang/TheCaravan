@@ -5,7 +5,6 @@ using UnityEngine.AI;
 using UnityEngine.UI;
 
 public class CarController : MonoBehaviour {
-    public Camera cam;
     public GameObject player;
     public GameObject canvas;
     public GameObject marker;
@@ -18,15 +17,16 @@ public class CarController : MonoBehaviour {
     private Text[] texts;
     private GameObject message;
     private Vector3 playerOffset;
+    Camera camera;
 
     private int groundLayer = 1 << 8;
 
     // Use this for initialization
     void Start () {
-        playerController = player.GetComponent<CharController>();
-        camController = cam.GetComponent<CameraController>();
+        playerController = player.GetComponentInChildren<CharController>();
         texts = canvas.GetComponentsInChildren<Text>();
         message = GameObject.Find("MessagePanel");
+        camera = Camera.main;
     }
 
     public void setOffset(Vector3 playerPos) {
@@ -44,7 +44,7 @@ public class CarController : MonoBehaviour {
                 }
 
                 if (Input.GetMouseButton(0)) {
-                    Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+                    Ray ray = camera.ScreenPointToRay(Input.mousePosition);
                     RaycastHit hit;
                     int layerMask = groundLayer;
                     if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask)) {
