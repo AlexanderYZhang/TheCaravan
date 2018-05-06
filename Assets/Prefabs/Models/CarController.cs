@@ -48,6 +48,8 @@ public class CarController : MonoBehaviour {
                     RaycastHit hit;
                     int layerMask = groundLayer;
                     if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask)) {
+                        Debug.Log(agent.isOnNavMesh);
+
                         agent.SetDestination(hit.point);
                         marker.transform.position = new Vector3(hit.point.x, 0, hit.point.z);
                         marker.SetActive(true);

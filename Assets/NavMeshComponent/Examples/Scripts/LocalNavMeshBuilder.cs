@@ -10,6 +10,7 @@ public class LocalNavMeshBuilder : MonoBehaviour
 {
     // The center of the build
     public Transform m_Tracked;
+    public int agentIndex;
 
     // The size of the build bounds
     public Vector3 m_Size = new Vector3(80.0f, 20.0f, 80.0f);
@@ -47,9 +48,8 @@ public class LocalNavMeshBuilder : MonoBehaviour
     void UpdateNavMesh(bool asyncUpdate = false)
     {
         NavMeshSourceTag.Collect(ref m_Sources);
-        var defaultBuildSettings = NavMesh.GetSettingsByID(0);
+        var defaultBuildSettings = NavMesh.GetSettingsByIndex(agentIndex);
         var bounds = QuantizedBounds();
-
         if (asyncUpdate)
             m_Operation = NavMeshBuilder.UpdateNavMeshDataAsync(m_NavMesh, defaultBuildSettings, m_Sources, bounds);
         else

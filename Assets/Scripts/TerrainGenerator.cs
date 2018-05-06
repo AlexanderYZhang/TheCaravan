@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 public class TerrainGenerator : MonoBehaviour {
 	public GameObject[] Trees;
@@ -68,19 +69,19 @@ public class TerrainGenerator : MonoBehaviour {
 			}
 		}
 
-		GameObject meshObject = new GameObject("Terrain");
-		MeshRenderer meshRenderer = meshObject.AddComponent<MeshRenderer>();
-		MeshFilter meshFilter = meshObject.AddComponent<MeshFilter>();
-		MeshCollider meshCollider = meshObject.AddComponent<MeshCollider>();
-		NavMeshSourceTag navMesh = meshObject.AddComponent<NavMeshSourceTag>();
-        meshFilter.mesh = CreateMesh(width * scale, height * scale);
-		meshRenderer.material = material;
-		meshCollider.sharedMesh = meshFilter.mesh;
-		meshObject.transform.position = new Vector3(scale * ((width - 1) / 2), 0, scale * ((height - 1) / 2));
+		// GameObject meshObject = new GameObject("Terrain");
+		// MeshRenderer meshRenderer = meshObject.AddComponent<MeshRenderer>();
+		// MeshFilter meshFilter = meshObject.AddComponent<MeshFilter>();
+		// MeshCollider meshCollider = meshObject.AddComponent<MeshCollider>();
+		// NavMeshSourceTag navMesh = meshObject.AddComponent<NavMeshSourceTag>();
+        // meshFilter.mesh = CreateMesh(width * scale, height * scale);
+		// meshRenderer.material = material;
+		// meshCollider.sharedMesh = meshFilter.mesh;
+		// meshObject.transform.position = new Vector3(scale * ((width - 1) / 2), 0, scale * ((height - 1) / 2));
 		// 8 is the ground layer
-		meshObject.layer = 8;
+		// meshObject.layer = 8;
 		playerManager.player.transform.position = new Vector3(2, 1, 2);
-		playerManager.car.transform.position = new Vector3(25, 1, 15);
+		playerManager.car.transform.position = new Vector3(25, 0, 15);
 	}
 	
 	public void DestroyMap() {
@@ -96,11 +97,7 @@ public class TerrainGenerator : MonoBehaviour {
         {
             Destroy(resourceHolder.gameObject);
         }
-		if (GameObject.Find("Terrain")) 
-		{
-			Destroy(GameObject.Find("Terrain"));
-		}
-		playerManager.player.GetComponent<PlayerController>().SetFocus(null);
+		playerManager.player.GetComponent<CharController>().SetFocus(null);
         playerManager.player.GetComponent<PlayerMotor>().StopMoveToPoint();
 	}
 
