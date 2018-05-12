@@ -9,9 +9,9 @@ public class CharController : MonoBehaviour {
     public GameObject canvas;
     public GameObject marker;
     public NavMeshAgent agent;
-    public Interactable focus;
+    public Inventory inventory;
 
-
+    private Interactable focus;
     private CarController carController;
     private CameraController cameraController;
 
@@ -106,14 +106,15 @@ public class CharController : MonoBehaviour {
         }
         if (!inVehicle) {
             bool running = Input.GetKey(KeyCode.LeftShift);
-
+            if (Input.GetKeyDown(KeyCode.Alpha1)) {
+                
+            }
             if (Input.GetMouseButton(0)) {
                 Ray ray = camera.ScreenPointToRay(Input.mousePosition);
                 RaycastHit hit;
                 int layerMask = groundLayer;
                 if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask)) {
                     motor.MoveToPoint(hit.point);
-
                     marker.transform.position = new Vector3(hit.point.x, 0, hit.point.z);
                     marker.SetActive(true);
                     SetFocus(null);
@@ -129,7 +130,6 @@ public class CharController : MonoBehaviour {
                     Interactable interactable = hit.collider.GetComponent<Interactable>();
                     if (interactable != null)
                     {
-                        Debug.Log(interactable);
                         SetFocus(interactable);
                     }
                 }
@@ -137,6 +137,7 @@ public class CharController : MonoBehaviour {
             }
 
             agent.speed = running ? 15f : 5f;
+
             float animSpeedPct = (running ? 1.0f : 0.5f) * (agent.hasPath ? 1 : 0);
             anim.SetFloat("speedPct", animSpeedPct);
         }
@@ -165,7 +166,7 @@ public class CharController : MonoBehaviour {
         {
             focus.OnFocused(transform);
         }
-        Debug.Log(newFocus);
+        //Debug.Log(newFocus);
         motor.FollowTarget(newFocus);
     }
 }
