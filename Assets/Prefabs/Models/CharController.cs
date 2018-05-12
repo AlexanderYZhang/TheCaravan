@@ -24,11 +24,12 @@ public class CharController : MonoBehaviour {
     // Vehicle Check
     public bool closeToVehicle;
     private bool inVehicle;
+    private bool placeMode;
 
     private int groundLayer = 1 << 8;
 
-    Camera camera;
-    PlayerMotor motor;
+    new Camera camera;
+    public PlayerMotor motor;
 
     // Use this for initialization
     void Start () {
@@ -106,39 +107,52 @@ public class CharController : MonoBehaviour {
         }
         if (!inVehicle) {
             bool running = Input.GetKey(KeyCode.LeftShift);
-            if (Input.GetKeyDown(KeyCode.Alpha1)) {
-                
-            }
-            if (Input.GetMouseButton(0)) {
-                Ray ray = camera.ScreenPointToRay(Input.mousePosition);
-                RaycastHit hit;
-                int layerMask = groundLayer;
-                if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask)) {
-                    motor.MoveToPoint(hit.point);
-                    marker.transform.position = new Vector3(hit.point.x, 0, hit.point.z);
-                    marker.SetActive(true);
-                    SetFocus(null);
-                }
-            }
-            if (Input.GetMouseButtonDown(1))
-            {
-                Ray ray = camera.ScreenPointToRay(Input.mousePosition);
-                RaycastHit hit;
+            if (!placeMode && Input.GetKeyDown(KeyCode.Alpha1)) {
+                placeMode = true;
+                motor.StopMoveToPoint();
+                print("Entered place mode");
+                if (inventory.EnoughForTurret(1)) {
 
-                if (Physics.Raycast(ray, out hit, 100))
-                {
-                    Interactable interactable = hit.collider.GetComponent<Interactable>();
-                    if (interactable != null)
-                    {
-                        SetFocus(interactable);
+                } else {
+                    placeMode = false;
+                }
+            } else if (placeMode && Input.GetKeyDown(KeyCode.Alpha1)) {
+                placeMode = false;
+                print("Exited place mode");
+            }
+            if (placeMode) {
+                print("In Place Mode");
+                SetFocus(null);
+            } else {
+                if (Input.GetMouseButton(0)) {
+                    Ray ray = camera.ScreenPointToRay(Input.mousePosition);
+                    RaycastHit hit;
+                    int layerMask = groundLayer;
+                    if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask)) {
+                        motor.MoveToPoint(hit.point);
+                        marker.transform.position = new Vector3(hit.point.x, 0, hit.point.z);
+                        marker.SetActive(true);
+                        SetFocus(null);
                     }
                 }
+                if (Input.GetMouseButtonDown(1)) {
+                    Ray ray = camera.ScreenPointToRay(Input.mousePosition);
+                    RaycastHit hit;
 
+                    if (Physics.Raycast(ray, out hit, 100) || Physics.Raycast(ray, out hit, 100)) {
+                        Interactable interactable = hit.collider.GetComponent<Interactable>();
+                        if (interactable != null) {
+                            SetFocus(interactable);
+                            marker.SetActive(false);
+                        }
+                    }
+
+                }
             }
 
             agent.speed = running ? 15f : 5f;
 
-            float animSpeedPct = (running ? 1.0f : 0.5f) * (agent.hasPath ? 1 : 0);
+            float animSpeedPct = (running ? 1.0f : 0.5f) * (motor.IsMoving() ? 1 : 0);
             anim.SetFloat("speedPct", animSpeedPct);
         }
     }
