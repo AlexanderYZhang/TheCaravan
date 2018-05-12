@@ -28,29 +28,33 @@ public class PlayerMotor : MonoBehaviour
         if (newFocus != null)
         {
             agent.stoppingDistance = newFocus.radius * .8f;
-            agent.updateRotation = false;
+            //agent.updateRotation = false;
 
 			target = newFocus.interactionTransform;
         }
         else
         {
             agent.stoppingDistance = 0f;
-            agent.updateRotation = true;
+            //agent.updateRotation = true;
             target = null;
         }
+    }
+
+    public bool IsMoving() {
+        return agent.hasPath;
     }
 
     void Update()
     {
         if (target != null)
         {
-            Debug.Log(target.position);
+            //Debug.Log(target.position);
             MoveToPoint(target.position);
-            FaceTarget();
+            //FaceTarget();
         }
     }
 
-    void FaceTarget()
+    public void FaceTarget()
     {
         Vector3 direction = (target.position - transform.position).normalized;
         Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));

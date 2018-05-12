@@ -246,9 +246,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75e07f1bc0d455349ba60489f02acda1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wood: 0
-  stone: 0
+  wood: 100
+  stone: 100
+  energy: 100
   turrets: 0
+  turretData:
+  - turretType: Turret_Type1
+    wood: 0
+    stone: 0
+    energy: 0
+    prefab: {fileID: 1349132083361284, guid: 6d1a33e752f960942bb0c68517f7d966, type: 2}
   woodText: {fileID: 1060532285}
   stoneText: {fileID: 1846905302}
 --- !u!1 &133128127 stripped
@@ -3756,7 +3763,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4273321307273476, guid: 1e112603f5de15440a22a72ce9ea28d6, type: 2}
       propertyPath: m_RootOrder
-      value: 13
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 114253546053032074, guid: 1e112603f5de15440a22a72ce9ea28d6,
         type: 2}
@@ -4229,7 +4236,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!81 &660168209
 AudioListener:
@@ -4739,7 +4746,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4916712392784550, guid: a64c0049352dc18428fd9b9f70b11107, type: 2}
       propertyPath: m_RootOrder
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a64c0049352dc18428fd9b9f70b11107, type: 2}
@@ -4903,7 +4910,7 @@ Transform:
   m_Children:
   - {fileID: 152581207}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1793171706
 MonoBehaviour:

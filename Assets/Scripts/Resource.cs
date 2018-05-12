@@ -17,7 +17,7 @@ public class Resource : Interactable {
 		
 		CharacterGather playerGather = playerManager.player.GetComponent<CharacterGather>();
 		if (playerGather != null) {
-			playerGather.Gather(resourceStats);
+            playerGather.Gather(resourceStats);
 		}
 	}
 }
