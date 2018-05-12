@@ -17,7 +17,7 @@ public class CarController : MonoBehaviour {
     private Text[] texts;
     private GameObject message;
     private Vector3 playerOffset;
-    Camera camera;
+    new Camera camera;
 
     private int groundLayer = 1 << 8;
 
