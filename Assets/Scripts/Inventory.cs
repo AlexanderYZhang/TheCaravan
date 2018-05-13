@@ -29,6 +29,9 @@ public class Inventory : MonoBehaviour {
         public int stone;
         public int energy;
         public GameObject prefab;
+        public Material seeThrough;
+        public Material seeThroughError;
+        public Material primary;
     };
 
     public Text woodText;
@@ -54,8 +57,8 @@ public class Inventory : MonoBehaviour {
         return false;
     }
 
-    public GameObject getTurretObject(int turretCode) {
-        return turretData[turretCode].prefab;
+    public TurretData GetTurretData(int turretCode) {
+        return turretData[turretCode];
     }
 
     public void AddTurret(int quantity)

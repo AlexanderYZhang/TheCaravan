@@ -25,6 +25,8 @@ public class CharController : MonoBehaviour {
     public bool closeToVehicle;
     private bool inVehicle;
     private bool placeMode;
+    private int selectedTurretCode = 0;
+    private GameObject turretCreation;
 
     private int groundLayer = 1 << 8;
 
@@ -109,19 +111,46 @@ public class CharController : MonoBehaviour {
             bool running = Input.GetKey(KeyCode.LeftShift);
             if (!placeMode && Input.GetKeyDown(KeyCode.Alpha1)) {
                 placeMode = true;
+                turretCreation = null;
                 motor.StopMoveToPoint();
-                print("Entered place mode");
-                if (inventory.EnoughForTurret(1)) {
-
-                } else {
-                    placeMode = false;
-                }
-            } else if (placeMode && Input.GetKeyDown(KeyCode.Alpha1)) {
+                marker.SetActive(false);
+            } else if (placeMode && Input.GetKeyDown(KeyCode.Escape)) {
                 placeMode = false;
-                print("Exited place mode");
+                DestroyObject(turretCreation);
+                turretCreation = null;
+                marker.SetActive(true);
             }
             if (placeMode) {
-                print("In Place Mode");
+                Inventory.TurretData data = inventory.GetTurretData(selectedTurretCode);
+                if (turretCreation == null) {
+                    Quaternion rot = new Quaternion {
+                        eulerAngles = new Vector3(-90, 0, 0)
+                    };
+                    turretCreation = Instantiate(
+                        data.prefab,
+                        marker.transform.position,
+                        rot
+                    );
+                    turretCreation.GetComponent<Renderer>().material = data.seeThrough;
+                }
+
+                Ray ray = camera.ScreenPointToRay(Input.mousePosition);
+                int layerMask = groundLayer;
+                RaycastHit hit;
+
+                if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask)) {
+                    turretCreation.transform.position = new Vector3(hit.point.x, 0, hit.point.z);
+                }
+
+                if (Input.GetMouseButtonDown(0) && inventory.EnoughForTurret(selectedTurretCode)) {
+                    turretCreation.GetComponent<Renderer>().material = data.primary;
+                    turretCreation.GetComponent<NavMeshObstacle>().enabled = true;
+                    turretCreation.GetComponent<SphereCollider>().enabled = true;
+                    inventory.AddTurret(1);
+                    placeMode = false;
+                } else if (!inventory.EnoughForTurret(0)) {
+                    placeMode = false;
+                }
                 SetFocus(null);
             } else {
                 if (Input.GetMouseButton(0)) {
@@ -139,7 +168,7 @@ public class CharController : MonoBehaviour {
                     Ray ray = camera.ScreenPointToRay(Input.mousePosition);
                     RaycastHit hit;
 
-                    if (Physics.Raycast(ray, out hit, 100) || Physics.Raycast(ray, out hit, 100)) {
+                    if (Physics.Raycast(ray, out hit, 100)) {
                         Interactable interactable = hit.collider.GetComponent<Interactable>();
                         if (interactable != null) {
                             SetFocus(interactable);
