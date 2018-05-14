@@ -4,47 +4,46 @@ using UnityEngine;
 using UnityEngine.AI;
 
 public class EnemyController : MonoBehaviour {
-    public NavMeshAgent agent;
-    public GameObject player;
+    public GameObject target;
     public float health;
 
     private Animator anim;
     private bool placed;
     private bool tracking;
+    NavMeshAgent agent;
+
 
     private HashSet<GameObject> enemiesInRange;
 
     // Use this for initialization
     void Start () {
         anim = GetComponent<Animator>();
-        enemiesInRange = new HashSet<GameObject>();
         anim.SetTrigger("moving");
-        tracking = false;
+        target = PlayerManager.instance.car;
+        agent = gameObject.GetComponent<NavMeshAgent>();
+        if (target) {
+            agent.SetDestination(target.transform.position);
+        }
     }
 
     void OnTriggerEnter(Collider other) {
-        GameObject obj = other.gameObject;
-        if (obj.tag == "Player" || obj.tag == "Turret" || obj.tag == "Vehicle") {
-            enemiesInRange.Add(obj);
-        }
+        // If it is a wall ro turret, or player, attack it
     }
 
     void OnTriggerExit(Collider other) {
-        GameObject obj = other.gameObject;
-        if (enemiesInRange.Contains(obj)) {
-            enemiesInRange.Remove(obj);
-        }
+        // if player moves out of range, stop following the player
     }
 
     // Update is called once per frame
     void Update () {
-        if (!agent.isActiveAndEnabled && GetComponent<Rigidbody>().velocity.y == 0) {
-            agent.enabled = true;
-        } else if (agent.isActiveAndEnabled && player != null) {
-            float animSpeedPct = 0;
-            float distToPlayer = Vector3.Distance(transform.position, player.transform.position);
-           
+
+        if (target != null) {
+            float animSpeedPct = 1;
+            float distToTarget = Vector3.Distance(transform.position, target.transform.position);
+
             anim.SetFloat("speedPct", animSpeedPct);
+            agent.SetDestination(target.transform.position);
+            Debug.Log(target.transform.position);
         }
     }
 }

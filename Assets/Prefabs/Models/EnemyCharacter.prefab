@@ -130,7 +130,6 @@ GameObject:
   - component: {fileID: 54486537165969304}
   - component: {fileID: 136358840305721678}
   - component: {fileID: 195277713757000806}
-  - component: {fileID: 135992383636442520}
   m_Layer: 10
   m_Name: EnemyCharacter
   m_TagString: Enemy
@@ -787,23 +786,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c34503eec7b866149990d54501401524, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  agent: {fileID: 195277713757000806}
-  player: {fileID: 1395338324295528, guid: 1e112603f5de15440a22a72ce9ea28d6, type: 2}
-  startTracking: 0
-  stopTracking: 0
+  target: {fileID: 0}
   health: 0
---- !u!135 &135992383636442520
-SphereCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1241112176326980}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 25
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!136 &136358840305721678
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -891,8 +875,8 @@ NavMeshAgent:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1241112176326980}
-  m_Enabled: 0
-  m_AgentTypeID: -1372625422
+  m_Enabled: 1
+  m_AgentTypeID: 0
   m_Radius: 0.5
   m_Speed: 5
   m_Acceleration: 15

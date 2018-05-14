@@ -39,10 +39,6 @@ public class CarController : MonoBehaviour {
             if (Input.GetKeyDown(KeyCode.E)) {
                 playerController.ExitVehicle(transform.position + playerOffset);
             } else {
-                if (!obstacle.enabled) {
-                    agent.enabled = true;
-                }
-
                 if (Input.GetMouseButton(0)) {
                     Ray ray = camera.ScreenPointToRay(Input.mousePosition);
                     RaycastHit hit;
@@ -55,9 +51,6 @@ public class CarController : MonoBehaviour {
                 }
             }
         } else if (!playerController.InsideVehicle()) {
-            if (!agent.enabled) {
-                obstacle.enabled = true;
-            }
             float distance = Vector3.Distance(player.transform.position, transform.position);
             if (distance <= 20f) {
                 playerController.closeToVehicle = true;
