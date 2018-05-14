@@ -80,6 +80,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4557263507774758}
   - component: {fileID: 108447391836103294}
+  - component: {fileID: 114096070791802236}
   m_Layer: 10
   m_Name: Spotlight
   m_TagString: Untagged
@@ -884,6 +885,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eeafb20328e0c2b4eb561d3690c9e86d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114096070791802236
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1177696109345578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 604762be90d8c3b4589cdef7fb09a0af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114253546053032074
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -900,7 +912,9 @@ MonoBehaviour:
   marker: {fileID: 0}
   agent: {fileID: 195465654920753090}
   inventory: {fileID: 0}
+  anim: {fileID: 0}
   closeToVehicle: 0
+  motor: {fileID: 0}
 --- !u!114 &114353872438023958
 MonoBehaviour:
   m_ObjectHideFlags: 1

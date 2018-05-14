@@ -4357,18 +4357,12 @@ Prefab:
       propertyPath: marker
       value: 
       objectReference: {fileID: 1972864688}
-    - target: {fileID: 195352856760063918, guid: 3ac1a54fa9dd0d944837b816f8ae8172,
+    - target: {fileID: 114603078822169792, guid: 3ac1a54fa9dd0d944837b816f8ae8172,
         type: 2}
-      propertyPath: m_Enabled
-      value: 1
+      propertyPath: obstacle
+      value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 195352856760063918, guid: 3ac1a54fa9dd0d944837b816f8ae8172,
-        type: 2}
-      propertyPath: m_BaseOffset
-      value: -1
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 208050303734688770, guid: 3ac1a54fa9dd0d944837b816f8ae8172, type: 2}
+    m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3ac1a54fa9dd0d944837b816f8ae8172, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &933741107 stripped

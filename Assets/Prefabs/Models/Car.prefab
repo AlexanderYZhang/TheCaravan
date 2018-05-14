@@ -103,6 +103,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4430174012554514}
   - component: {fileID: 108080568733787854}
+  - component: {fileID: 114994173904067964}
   m_Layer: 10
   m_Name: LeftLight
   m_TagString: Untagged
@@ -204,6 +205,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4007434919946806}
   - component: {fileID: 108720900923177418}
+  - component: {fileID: 114527113584582610}
   m_Layer: 10
   m_Name: RightLight
   m_TagString: Untagged
@@ -370,7 +372,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4450063846539502}
-  - component: {fileID: 208050303734688770}
   - component: {fileID: 114603078822169792}
   - component: {fileID: 65013547694031652}
   - component: {fileID: 114851548007884042}
@@ -1630,6 +1631,17 @@ Light:
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &114527113584582610
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1462793726515954}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 604762be90d8c3b4589cdef7fb09a0af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114603078822169792
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1643,9 +1655,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   canvas: {fileID: 0}
-  marker: {fileID: 1541134270939922, guid: 8e78e4127eda0c14bb3c000d6d09f585, type: 2}
+  marker: {fileID: 0}
   agent: {fileID: 195352856760063918}
-  obstacle: {fileID: 208050303734688770}
+  obstacle: {fileID: 0}
 --- !u!114 &114851548007884042
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1659,13 +1671,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   radius: 6
   interactionTransform: {fileID: 4311636823529618}
+--- !u!114 &114994173904067964
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1300747765355700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 604762be90d8c3b4589cdef7fb09a0af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!195 &195352856760063918
 NavMeshAgent:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1868459174466754}
-  m_Enabled: 0
+  m_Enabled: 1
   m_AgentTypeID: -334000983
   m_Radius: 9
   m_Speed: 20
@@ -1677,21 +1700,6 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 2
-  m_BaseOffset: 0
+  m_BaseOffset: -1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!208 &208050303734688770
-NavMeshObstacle:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1868459174466754}
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 6, y: 4, z: 9.5}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 4, z: 0}
-  m_TimeToStationary: 0.5
