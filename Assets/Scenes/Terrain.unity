@@ -4376,11 +4376,6 @@ GameObject:
   m_PrefabParentObject: {fileID: 1868459174466754, guid: 3ac1a54fa9dd0d944837b816f8ae8172,
     type: 2}
   m_PrefabInternal: {fileID: 892883016}
---- !u!4 &933741113 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 4450063846539502, guid: 3ac1a54fa9dd0d944837b816f8ae8172,
-    type: 2}
-  m_PrefabInternal: {fileID: 892883016}
 --- !u!1 &983174737
 GameObject:
   m_ObjectHideFlags: 0
@@ -4409,9 +4404,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 115dfe7b0938447cbbf9507076f54049, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Tracked: {fileID: 133128134}
+  m_Tracked: {fileID: 0}
   agentIndex: 0
-  m_Size: {x: 300, y: 20, z: 300}
+  m_Size: {x: 600, y: 20, z: 600}
 --- !u!4 &983174739
 Transform:
   m_ObjectHideFlags: 0
@@ -4419,7 +4414,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 983174737}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 150, y: 0, z: 150}
+  m_LocalPosition: {x: 300, y: 0, z: 300}
   m_LocalScale: {x: 300, y: 1, z: 300}
   m_Children: []
   m_Father: {fileID: 0}
@@ -4436,9 +4431,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 115dfe7b0938447cbbf9507076f54049, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Tracked: {fileID: 933741113}
+  m_Tracked: {fileID: 0}
   agentIndex: 2
-  m_Size: {x: 300, y: 20, z: 300}
+  m_Size: {x: 600, y: 20, z: 600}
 --- !u!1 &1016367491
 GameObject:
   m_ObjectHideFlags: 0
