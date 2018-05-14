@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - Bullet
   - Turret
+  - Car
   layers:
   - Default
   - TransparentFX

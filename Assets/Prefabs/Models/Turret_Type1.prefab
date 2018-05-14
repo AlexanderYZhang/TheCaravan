@@ -42,6 +42,8 @@ GameObject:
   - component: {fileID: 208408174948247782}
   - component: {fileID: 114803835234043922}
   - component: {fileID: 135319590524073486}
+  - component: {fileID: 65085654384971542}
+  - component: {fileID: 54505715145768248}
   m_Layer: 10
   m_Name: Turret_Type1
   m_TagString: Turret
@@ -158,6 +160,33 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1019803299456570}
   m_Mesh: {fileID: 4300000, guid: 39259611a7f544c41aab5eea981e1d8c, type: 3}
+--- !u!54 &54505715145768248
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1349132083361284}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &65085654384971542
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1349132083361284}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2, y: 2.0000014, z: 7.021451}
+  m_Center: {x: 0, y: 0, z: 2.5107253}
 --- !u!95 &95954457743431764
 Animator:
   serializedVersion: 3
@@ -190,6 +219,7 @@ MonoBehaviour:
   scanSpeed: 25
   rateOfFire: 2
   bulletType: {fileID: 1926478755375340, guid: 2146a9d50ee40e04e99ed97faf5e9435, type: 2}
+  notPlaced: 0
 --- !u!135 &135319590524073486
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -198,7 +228,7 @@ SphereCollider:
   m_GameObject: {fileID: 1349132083361284}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Radius: 15
   m_Center: {x: 0, y: 0, z: 0}
@@ -211,7 +241,7 @@ NavMeshObstacle:
   m_Enabled: 0
   serializedVersion: 3
   m_Shape: 1
-  m_Extents: {x: 1, y: 1, z: 3.5110002}
+  m_Extents: {x: 1.5, y: 1.5, z: 3.5110002}
   m_MoveThreshold: 0.1
   m_Carve: 1
   m_CarveOnlyStationary: 1

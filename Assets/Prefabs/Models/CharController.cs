@@ -16,7 +16,7 @@ public class CharController : MonoBehaviour {
     private CameraController cameraController;
 
     // Character Parameter
-    public Animator anim;
+    private Animator anim;
     private bool placed;
     private Text[] texts;
     private GameObject message;
@@ -79,8 +79,8 @@ public class CharController : MonoBehaviour {
         inVehicle = true;
         cameraController.target = car.transform;
         marker.transform.position = new Vector3(car.transform.position.x, 0, car.transform.position.z);
-        carController.obstacle.enabled = false;
         carController.setOffset(transform.position);
+        carController.agent.enabled = true;
         gameObject.SetActive(false);
     }
 
@@ -95,6 +95,14 @@ public class CharController : MonoBehaviour {
 
     public bool InsideVehicle() {
         return inVehicle;
+    }
+
+    private void ChangeObjectMaterial(GameObject obj, Material mat) {
+        obj.GetComponent<Renderer>().material = mat;
+        Renderer[] children = obj.GetComponentsInChildren<Renderer>();
+        foreach (Renderer rend in children) {
+            rend.material = mat;
+        }
     }
 
     // Update is called once per frame
@@ -131,7 +139,9 @@ public class CharController : MonoBehaviour {
                         marker.transform.position,
                         rot
                     );
-                    turretCreation.GetComponent<Renderer>().material = data.seeThrough;
+                    ChangeObjectMaterial(turretCreation, data.seeThrough);
+                    turretCreation.GetComponent<TurretController>().notPlaced = true;
+                    turretCreation.GetComponent<SphereCollider>().enabled = false;
                 }
 
                 Ray ray = camera.ScreenPointToRay(Input.mousePosition);
@@ -140,11 +150,20 @@ public class CharController : MonoBehaviour {
 
                 if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask)) {
                     turretCreation.transform.position = new Vector3(hit.point.x, 0, hit.point.z);
+                    if (turretCreation.GetComponent<TurretController>().Overlapping() && 
+                        turretCreation.GetComponent<Renderer>().material != data.seeThroughError) {
+                        ChangeObjectMaterial(turretCreation, data.seeThroughError);
+                    } else if (turretCreation.GetComponent<Renderer>().material != data.seeThrough) {
+                        ChangeObjectMaterial(turretCreation, data.seeThrough);
+                    }
                 }
 
-                if (Input.GetMouseButtonDown(0) && inventory.EnoughForTurret(selectedTurretCode)) {
-                    turretCreation.GetComponent<Renderer>().material = data.primary;
+                if (Input.GetMouseButtonDown(0) && inventory.EnoughForTurret(selectedTurretCode) &&
+                    !turretCreation.GetComponent<TurretController>().Overlapping()) {
+                    ChangeObjectMaterial(turretCreation, data.primary);
                     turretCreation.GetComponent<NavMeshObstacle>().enabled = true;
+                    turretCreation.GetComponent<SphereCollider>().enabled = true;
+                    turretCreation.GetComponent<TurretController>().notPlaced = false;
                     turretCreation.GetComponent<SphereCollider>().enabled = true;
                     inventory.AddTurret(1);
                     placeMode = false;
@@ -186,7 +205,7 @@ public class CharController : MonoBehaviour {
             agent.speed = running ? 15f : 5f;
 
             float animSpeedPct = 0;
-            if (!motor.IsMoving() && focus != null && focus.IsInteracting() && focus.GetType() == typeof(Resource)) {
+            if (!motor.IsMoving() && focus != null && focus.IsInteracting() && focus is Resource) {
                 animSpeedPct = 0.32f;
             } else if (motor.IsMoving() && running) {
                 animSpeedPct = 1;

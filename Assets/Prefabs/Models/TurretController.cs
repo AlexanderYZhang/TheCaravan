@@ -7,9 +7,11 @@ public class TurretController : MonoBehaviour {
     public float scanSpeed;
     public float rateOfFire;
     public GameObject bulletType;
+    public bool notPlaced;
 
     private string turretState;
     private HashSet<GameObject> enemiesInRange;
+    private HashSet<GameObject> overlappingObjects;
 
     private GameObject closest;
     private float timeLastShot;
@@ -18,21 +20,43 @@ public class TurretController : MonoBehaviour {
     void Start () {
         turretState = "idle";
         enemiesInRange = new HashSet<GameObject>();
+        overlappingObjects = new HashSet<GameObject>();
         closest = null;
         timeLastShot = 0;
+        notPlaced = true;
 	}
+
+    public bool Overlapping() {
+        if (overlappingObjects == null) {
+            return false;
+        }
+        return overlappingObjects.Count > 0;
+    }
 
     void OnTriggerEnter(Collider other) {
         GameObject obj = other.gameObject;
-        if (obj.tag == "Enemy" && other is CapsuleCollider) {
-            enemiesInRange.Add(obj);
+        print(other.tag);
+        if (notPlaced) {
+            if (other.tag == "Player" || 
+                (other.tag == "Turret" && other is BoxCollider)||
+                other.tag == "Car") {
+                overlappingObjects.Add(obj);
+            }
+        } else {
+            if (obj.tag == "Enemy") {
+                enemiesInRange.Add(obj);
+            }
         }
     }
 
     void OnTriggerExit(Collider other) {
         GameObject obj = other.gameObject;
-        if (enemiesInRange.Contains(obj)) {
-            enemiesInRange.Remove(obj);
+        if (notPlaced) {
+            overlappingObjects.Remove(obj);
+        } else {
+            if (enemiesInRange.Contains(obj)) {
+                enemiesInRange.Remove(obj);
+            }
         }
     }
 

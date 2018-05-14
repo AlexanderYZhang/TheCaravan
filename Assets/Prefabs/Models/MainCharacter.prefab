@@ -912,7 +912,6 @@ MonoBehaviour:
   marker: {fileID: 0}
   agent: {fileID: 195465654920753090}
   inventory: {fileID: 0}
-  anim: {fileID: 0}
   closeToVehicle: 0
   motor: {fileID: 0}
 --- !u!114 &114353872438023958

@@ -47,13 +47,14 @@ public class EnemyController : MonoBehaviour {
     }
     
     void OnDrawGizmos() {
-        NavMeshPath path = agent.path;
-        if (path != null) {
-            for (int i = 0; i < path.corners.Length - 1; i++)
-            {
-                Debug.DrawLine(path.corners[i], path.corners[i + 1], Color.red);
-            }
+        if (agent != null) {
+            NavMeshPath path = agent.path;
+            if (path != null) {
+                for (int i = 0; i < path.corners.Length - 1; i++) {
+                    Debug.DrawLine(path.corners[i], path.corners[i + 1], Color.red);
+                }
 
+            }
         }
     }
 }

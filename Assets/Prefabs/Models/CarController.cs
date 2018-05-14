@@ -9,7 +9,6 @@ public class CarController : MonoBehaviour {
     public GameObject canvas;
     public GameObject marker;
     public NavMeshAgent agent;
-    public NavMeshObstacle obstacle;
 
     private CharController playerController;
     private CameraController camController;

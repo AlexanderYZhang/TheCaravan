@@ -6,7 +6,9 @@ public class Goal : MonoBehaviour {
 
 	public TerrainGenerator generator;
 	void OnTriggerEnter(Collider other) {
-		generator.DestroyMap();
-		generator.GenerateMap();
+        if (other.tag == "Car") {
+            generator.DestroyMap();
+            generator.GenerateMap();
+        }
 	}
 }
