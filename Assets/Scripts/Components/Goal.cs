@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class Goal : MonoBehaviour {
 
-	public TerrainGenerator generator;
+	TerrainGenerator generator;
+	
+	void Start() {
+		generator = TerrainGenerator.instance;
+	}
 	void OnTriggerEnter(Collider other) {
         if (other.tag == "Car") {
             generator.DestroyMap();

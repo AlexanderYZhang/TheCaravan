@@ -39,7 +39,9 @@ public class TurretController : MonoBehaviour {
         if (notPlaced) {
             if (other.tag == "Player" || 
                 (other.tag == "Turret" && other is BoxCollider)||
-                other.tag == "Car") {
+                other.tag == "Car" ||
+                other.tag == "Rock" ||
+                other.tag == "Tree") {
                 overlappingObjects.Add(obj);
             }
         } else {
