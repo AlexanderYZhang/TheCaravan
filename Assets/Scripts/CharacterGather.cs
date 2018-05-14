@@ -22,5 +22,5 @@ public class CharacterGather : MonoBehaviour {
             resourceStats.TakeDamage(myStats.gathering.GetValue());
 			gatherCooldown = 1f / gatherSpeed;
         }
-	}
+    }
 }
