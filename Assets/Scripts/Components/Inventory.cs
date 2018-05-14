@@ -37,16 +37,20 @@ public class Inventory : MonoBehaviour {
     public Text woodText;
     public Text stoneText;
 
+    void Start() {
+        woodText.text = "x " + wood.ToString();
+        stoneText.text = "x " + stone.ToString();
+    }
 	
 	public void AddWood(int quantity) {
 		wood += quantity;
-		woodText.text = "x " + quantity.ToString();
+		woodText.text = "x " + wood.ToString();
 	}
 
     public void AddStone(int quantity)
     {
 		stone += quantity;
-		stoneText.text = "x " + quantity.ToString();
+		stoneText.text = "x " + stone.ToString();
     }
 
     public bool EnoughForTurret(int turretCode) {
