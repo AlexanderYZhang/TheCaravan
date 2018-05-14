@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class Goal : MonoBehaviour {
 
-	public TerrainGenerator generator;
+	TerrainGenerator generator;
+	
+	void Start() {
+		generator = TerrainGenerator.instance;
+	}
 	void OnTriggerEnter(Collider other) {
-		generator.DestroyMap();
+		Debug.Log(generator);
+ 		generator.DestroyMap();
 		generator.GenerateMap();
 	}
 }

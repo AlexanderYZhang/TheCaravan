@@ -4,10 +4,14 @@ using UnityEngine;
 using UnityEditor;
 
 public class TerrainGenerator : MonoBehaviour {
+	public static TerrainGenerator instance;
 	public GameObject[] Trees;
 	public GameObject[] Protrusions;
 	public GameObject[] Rocks;
 	public Material material;
+	public GameObject goal;
+    public int[,] board { get; private set;}
+    public int[,] protrusionBoard { get; private set;}
 	
 	public int width;
 	public int height;
@@ -19,8 +23,7 @@ public class TerrainGenerator : MonoBehaviour {
 	private Transform treeHolder;
 	private Transform protrusionHolder;
 	private Transform resourceHolder;
-	private int[,] board;
-	private int[,] protrusionBoard;
+	private GameObject goalInstance;
 
 	PlayerManager playerManager;
 
@@ -32,6 +35,9 @@ public class TerrainGenerator : MonoBehaviour {
 		Resource = 8
 	};
 
+	void Awake() {
+		instance = this;
+	}
 	void Start() {
 		playerManager = PlayerManager.instance;
 		GenerateMap();
@@ -47,6 +53,7 @@ public class TerrainGenerator : MonoBehaviour {
 		offsetY = Random.Range(0, 9999f);
 		
 		InitBoardArray();
+		PlaceGoal();
 
 		treeHolder = new GameObject("Trees").transform;
 		protrusionHolder = new GameObject("Protrusions").transform;
@@ -85,6 +92,7 @@ public class TerrainGenerator : MonoBehaviour {
 	}
 	
 	public void DestroyMap() {
+		Debug.Log("destruction"); 
 		if (treeHolder != null) 
 		{
 			Destroy(treeHolder.gameObject);
@@ -97,8 +105,44 @@ public class TerrainGenerator : MonoBehaviour {
         {
             Destroy(resourceHolder.gameObject);
         }
+		if (goalInstance != null) {
+			Destroy(goalInstance);
+		}
 		playerManager.player.GetComponent<CharController>().SetFocus(null);
         playerManager.player.GetComponent<PlayerMotor>().StopMoveToPoint();
+	}
+
+	private void PlaceGoal() {
+		int corner = (int) Random.Range(0,3);
+		int range = 20;
+		int lowerX = 0, lowerY = 0;
+		switch (corner) {
+			case 0:
+				lowerX = 0;
+				lowerY = height - range;
+				break;
+			case 1:
+				lowerX = width - range;
+				lowerY = 0;
+				break;
+			case 2:
+				lowerX = width - range;
+				lowerY = height - range;
+				break;
+		}
+
+		clearArea(lowerX, lowerY, range);
+		Vector3 position = new Vector3((lowerX + range/2) * 3, 0, (lowerY + range/2) * 3);
+        goalInstance = Instantiate(goal, position, Quaternion.identity);
+	}
+
+	private void clearArea(int lowerX, int lowerY, int range) {
+		for (int x = lowerX; x < lowerX + range; x++) {
+			for (int y = lowerY; y < lowerY + range; y++) {
+				board[x,y] = (int) TerrainItem.Nothing;
+				protrusionBoard[x,y] = (int) TerrainItem.Nothing;
+			}
+		}
 	}
 
 	private void InitBoardArray() {
@@ -142,13 +186,7 @@ public class TerrainGenerator : MonoBehaviour {
 		}
 
 		//Clear spawn area
-
-		for (int x = 0; x < 20; x++) {
-			for (int y = 0; y < 20; y++) {
-				board[x,y] = (int) TerrainItem.Nothing;
-				protrusionBoard[x,y] = (int) TerrainItem.Nothing;
-			}
-		}
+		clearArea(0, 0, 30);
 	}
 
 	private void rockPlacement(int r, int c) {
