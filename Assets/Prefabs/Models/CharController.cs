@@ -16,7 +16,7 @@ public class CharController : MonoBehaviour {
     private CameraController cameraController;
 
     // Character Parameter
-    private Animator anim;
+    public Animator anim;
     private bool placed;
     private Text[] texts;
     private GameObject message;
@@ -153,6 +153,11 @@ public class CharController : MonoBehaviour {
                 }
                 SetFocus(null);
             } else {
+                if (focus != null && focus.IsInteracting()) {
+                    GetComponent<PlayerMotor>().StopMoveToPoint();
+                    GetComponent<PlayerMotor>().FaceTarget();
+                }
+
                 if (Input.GetMouseButton(0)) {
                     Ray ray = camera.ScreenPointToRay(Input.mousePosition);
                     RaycastHit hit;
@@ -181,7 +186,17 @@ public class CharController : MonoBehaviour {
 
             agent.speed = running ? 15f : 5f;
 
-            float animSpeedPct = (running ? 1.0f : 0.5f) * (motor.IsMoving() ? 1 : 0);
+            float animSpeedPct = 0;
+            if (!motor.IsMoving() && focus != null && focus.IsInteracting() && focus.GetType() == typeof(Resource)) {
+                animSpeedPct = 0.32f;
+            } else if (motor.IsMoving() && running) {
+                animSpeedPct = 1;
+            } else if (motor.IsMoving()) {
+                animSpeedPct = 0.67f;
+            } else {
+                animSpeedPct = 0;
+            }
+
             anim.SetFloat("speedPct", animSpeedPct);
         }
     }

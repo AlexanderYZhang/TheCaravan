@@ -8,18 +8,25 @@ public class Interactable : MonoBehaviour {
 	bool isFocus = false;
 	Transform player;
 
+    private bool interacting;
+
 	public virtual void Interact() {}
 
-	void Update() {
-		if (isFocus) {
-			float distance = Vector3.Distance(player.position, interactionTransform.position);
+    public bool IsInteracting() {
+        return interacting;
+    }
 
-			if (distance <= radius) {
-				Interact();
-                player.gameObject.GetComponent<PlayerMotor>().StopMoveToPoint();
-                player.gameObject.GetComponent<PlayerMotor>().FaceTarget();
-			}
-		}
+	void Update() {
+        if (isFocus) {
+            float distance = Vector3.Distance(player.position, interactionTransform.position);
+
+            if (distance <= radius) {
+                Interact();
+                interacting = true;
+            }
+		} else {
+            interacting = false;
+        }
 	}
 
 	public virtual void OnFocused (Transform playerTransform) {
