@@ -10,8 +10,9 @@ public class Goal : MonoBehaviour {
 		generator = TerrainGenerator.instance;
 	}
 	void OnTriggerEnter(Collider other) {
-		Debug.Log(generator);
- 		generator.DestroyMap();
-		generator.GenerateMap();
+		if (other.CompareTag("player")) {
+            generator.DestroyMap();
+            generator.GenerateMap();
+		}
 	}
 }

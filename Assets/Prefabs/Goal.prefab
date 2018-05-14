@@ -38,7 +38,6 @@ GameObject:
   - component: {fileID: 4196686853771038}
   - component: {fileID: 198268990434438614}
   - component: {fileID: 199442999363530888}
-  - component: {fileID: 114814677312390452}
   m_Layer: 0
   m_Name: Particle System
   m_TagString: Untagged
@@ -96,19 +95,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75eeaa84e932443408da639c00cb3023, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  generator: {fileID: 0}
---- !u!114 &114814677312390452
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1982406566670032}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75eeaa84e932443408da639c00cb3023, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  generator: {fileID: 0}
 --- !u!198 &198268990434438614
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -1351,7 +1337,7 @@ ParticleSystem:
     speedModifier:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 2
       minScalar: 1
       maxCurve:
         serializedVersion: 2
