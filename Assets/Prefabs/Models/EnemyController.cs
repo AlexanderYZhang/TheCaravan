@@ -43,7 +43,17 @@ public class EnemyController : MonoBehaviour {
 
             anim.SetFloat("speedPct", animSpeedPct);
             agent.SetDestination(target.transform.position);
-            Debug.Log(target.transform.position);
+        }
+    }
+    
+    void OnDrawGizmos() {
+        NavMeshPath path = agent.path;
+        if (path != null) {
+            for (int i = 0; i < path.corners.Length - 1; i++)
+            {
+                Debug.DrawLine(path.corners[i], path.corners[i + 1], Color.red);
+            }
+
         }
     }
 }

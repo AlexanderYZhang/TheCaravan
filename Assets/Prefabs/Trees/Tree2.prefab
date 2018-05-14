@@ -200,7 +200,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a3f72149c5debd49b8982786175445b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 6
+  radius: 9
   interactionTransform: {fileID: 4624206767316284}
 --- !u!114 &114240954662881832
 MonoBehaviour:

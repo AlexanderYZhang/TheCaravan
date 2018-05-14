@@ -172,8 +172,7 @@ public class CharController : MonoBehaviour {
                 if (Input.GetMouseButtonDown(1)) {
                     Ray ray = camera.ScreenPointToRay(Input.mousePosition);
                     RaycastHit hit;
-
-                    if (Physics.Raycast(ray, out hit, 100)) {
+                    if (Physics.Raycast(ray, out hit, Mathf.Infinity)) {
                         Interactable interactable = hit.collider.GetComponent<Interactable>();
                         if (interactable != null) {
                             SetFocus(interactable);
@@ -226,5 +225,19 @@ public class CharController : MonoBehaviour {
         }
         //Debug.Log(newFocus);
         motor.FollowTarget(newFocus);
+    }
+
+
+    void OnDrawGizmos()
+    {
+        NavMeshPath path = agent.path;
+        if (path != null)
+        {
+            for (int i = 0; i < path.corners.Length - 1; i++)
+            {
+                Debug.DrawLine(path.corners[i], path.corners[i + 1], Color.red);
+            }
+
+        }
     }
 }

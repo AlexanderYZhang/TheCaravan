@@ -16,7 +16,21 @@ public class PlayerMotor : MonoBehaviour
 
     public void MoveToPoint(Vector3 point)
     {
-        agent.SetDestination(point);
+        NavMeshHit hit;
+        if (!NavMesh.SamplePosition(point, out hit, 1.0f, NavMesh.AllAreas)) {
+            //Debug.Log("invalid sample" + hit);
+            for (float i = 5f; i <= 7f; i++) {
+                if (NavMesh.SamplePosition(point, out hit, i, NavMesh.AllAreas))
+                {
+                    //Debug.Log("found sample" + hit.position);
+                    agent.SetDestination(hit.position);
+                    break;
+                }
+            }
+
+        } else {
+            agent.SetDestination(point);
+        }
     }
 
     public void StopMoveToPoint() {
@@ -27,7 +41,7 @@ public class PlayerMotor : MonoBehaviour
     {
         if (newFocus != null)
         {
-            agent.stoppingDistance = newFocus.radius * .8f;
+            //agent.stoppingDistance = newFocus.radius * .8f;
             //agent.updateRotation = false;
 
 			target = newFocus.interactionTransform;
