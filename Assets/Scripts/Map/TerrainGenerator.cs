@@ -10,9 +10,11 @@ public class TerrainGenerator : MonoBehaviour {
 	public GameObject[] Rocks;
 	public Material material;
 	public GameObject goal;
+	public GameObject spawn;
     public int[,] board { get; private set;}
     public int[,] protrusionBoard { get; private set;}
 	
+	public int spawnLocations;
 	public int width;
 	public int height;
 	public float samplingScale;
@@ -23,6 +25,7 @@ public class TerrainGenerator : MonoBehaviour {
 	private Transform treeHolder;
 	private Transform protrusionHolder;
 	private Transform resourceHolder;
+	private Transform spawnHolder;
 	private GameObject goalInstance;
 
 	PlayerManager playerManager;
@@ -31,8 +34,9 @@ public class TerrainGenerator : MonoBehaviour {
 		Nothing = 0,
 		Tree = 1,
 		Protrusion = 2, 
-		Misc = 4, 
-		Resource = 8
+		Spawn = 3, 
+		Resource = 4,
+		Goal = 5,
 	};
 
 	void Awake() {
@@ -44,9 +48,6 @@ public class TerrainGenerator : MonoBehaviour {
 	}
 
 	public void GenerateMap () {
-		int heightCoord = height;
-		int widthCoord = width;
-
         Random.InitState((int)System.DateTime.Now.Ticks);
 
         offsetX = Random.Range(0, 9999f);
@@ -58,6 +59,7 @@ public class TerrainGenerator : MonoBehaviour {
 		treeHolder = new GameObject("Trees").transform;
 		protrusionHolder = new GameObject("Protrusions").transform;
 		resourceHolder = new GameObject("Resources").transform;
+		spawnHolder = new GameObject("SpawnLocations").transform;
 		
 		for (int r = 0; r < width; r++) {
 			for (int c = 0; c < height; c++) {
@@ -72,6 +74,10 @@ public class TerrainGenerator : MonoBehaviour {
 
 				if (board[r,c] == (int) TerrainItem.Resource) {
 					rockPlacement(r, c);
+				}
+
+				if (board[r,c] == (int) TerrainItem.Spawn) {
+					spawnPlacement(r, c);
 				}
 			}
 		}
@@ -88,7 +94,7 @@ public class TerrainGenerator : MonoBehaviour {
 		// 8 is the ground layer
 		// meshObject.layer = 8;
 		playerManager.player.transform.position = new Vector3(2, 1, 2);
-		playerManager.car.transform.position = new Vector3(25, 0, 15);
+		playerManager.car.transform.position = new Vector3(10, 0, 10);
 	}
 	
 	public void DestroyMap() {
@@ -132,7 +138,11 @@ public class TerrainGenerator : MonoBehaviour {
 		}
 
 		clearArea(lowerX, lowerY, range);
-		Vector3 position = new Vector3((lowerX + range/2) * scale, 0, (lowerY + range/2) * scale);
+		lowerX = lowerX + (range/2);
+		lowerY = lowerY + (range/2);
+
+		Vector3 position = new Vector3(lowerX * scale, 0, lowerY * scale);
+		board[lowerX, lowerY] = (int) TerrainItem.Goal;
         goalInstance = Instantiate(goal, position, Quaternion.identity);
 	}
 
@@ -146,7 +156,6 @@ public class TerrainGenerator : MonoBehaviour {
 	}
 
 	private void InitBoardArray() {
-		int numRocks = 50, i = 0;
 		board = new int[height, width];
 		protrusionBoard = new int[height, width];
 
@@ -170,18 +179,10 @@ public class TerrainGenerator : MonoBehaviour {
 			}
 		}
 
-		while(i < numRocks) {
-			i++;
-			int randX = (int) Random.Range(0, height);
-			int randY = (int) Random.Range(0, width);
+		scatterObjects(50, (int)TerrainItem.Resource);
+		scatterObjects(spawnLocations, (int)TerrainItem.Spawn);
 
-			if (protrusionBoard[randX, randY] == (int)TerrainItem.Nothing &&
-				board[randX, randY] == (int)TerrainItem.Nothing) {
-					board[randX, randY] = (int)TerrainItem.Resource;
-			}
-		}
-
-		for (i = 0; i < distribution.Length; i++) {
+		for (int i = 0; i < distribution.Length; i++) {
 			print(distribution[i]);
 		}
 
@@ -189,12 +190,31 @@ public class TerrainGenerator : MonoBehaviour {
 		clearArea(0, 0, 30);
 	}
 
+	private void scatterObjects(int quantity, int type) {
+		int i = 0;
+		while (i < quantity) {
+			i++;
+			int randX = (int) Random.Range(0, height);
+			int randY = (int) Random.Range(0, width);
+
+			if (protrusionBoard[randX, randY] == (int) TerrainItem.Nothing &&
+				board[randX, randY] == (int) TerrainItem.Nothing) {
+				board[randX, randY] = type;
+			}
+		}
+	}
+
+	private void spawnPlacement(int r, int c) {
+		Vector3 position = new Vector3(r * scale, 0, c * scale);
+		GameObject rockToInstantiate = Instantiate(spawn, position, Quaternion.identity, spawnHolder);
+	}
+
 	private void rockPlacement(int r, int c) {
-		int randRock = (int) Random.Range(0, 1f);
+		// incase we want different looking rocks
+		// int randRock = (int) Random.Range(0, 1f);
         Vector3 position = new Vector3(r * scale, 0, c * scale);
 
-		GameObject rockToInstantiate = Instantiate(Rocks[0], position, Quaternion.identity);
-		rockToInstantiate.transform.SetParent(resourceHolder.gameObject.transform);
+		GameObject rockToInstantiate = Instantiate(Rocks[0], position, Quaternion.identity, resourceHolder);
 	}
 
 	private float protrusionPlacement(int r, int c) {
@@ -203,29 +223,28 @@ public class TerrainGenerator : MonoBehaviour {
         Vector3 position = new Vector3(0, 0, 0);
 
         position.Set(r * scale, 0, c * scale);
-		GameObject protrusionToInstantiate;
+			GameObject protrusionToInstantiate;
 		switch (tileIndex) {
 			case 7: 
-				protrusionToInstantiate = Instantiate(Protrusions[0], position, Quaternion.identity);
+				protrusionToInstantiate = Instantiate(Protrusions[0], position, Quaternion.identity, protrusionHolder);
 				offset = 2.5f;
 				break;
 			case 8: 
-				protrusionToInstantiate = Instantiate(Protrusions[1], position, Quaternion.identity);
+				protrusionToInstantiate = Instantiate(Protrusions[1], position, Quaternion.identity, protrusionHolder);
 				offset = 2.7f;
 				break;
 			case 9:
-				protrusionToInstantiate = Instantiate(Protrusions[2], position, Quaternion.identity);
+				protrusionToInstantiate = Instantiate(Protrusions[2], position, Quaternion.identity, protrusionHolder);
 				offset = 4.8f;
 				break;
 			case 10:
-				protrusionToInstantiate = Instantiate(Protrusions[2], position, Quaternion.identity);
+				protrusionToInstantiate = Instantiate(Protrusions[2], position, Quaternion.identity, protrusionHolder);
 				offset = 4.8f;
 				break;
 			default:
 				protrusionToInstantiate = new GameObject("empty");
 				break;
 		}
-		protrusionToInstantiate.transform.SetParent(protrusionHolder.gameObject.transform);
 		return offset;
 	}
 
@@ -244,23 +263,22 @@ public class TerrainGenerator : MonoBehaviour {
 			position.Set(position.x, offset, position.z);
 			treeScale.Set(scaleFactor, scaleFactor, scaleFactor); 
 
-			treeToInstantiate = Instantiate(Trees[0], position, Quaternion.identity);
+			treeToInstantiate = Instantiate(Trees[0], position, Quaternion.identity, treeHolder);
 		} else if (randomTree >= 1 && randomTree < 2) {
 			scaleFactor = 1 + Random.Range(0, .75f);
 
 			position.Set(position.x, offset, position.z);
             treeScale.Set(scaleFactor, scaleFactor, scaleFactor); 
 
-			treeToInstantiate = Instantiate(Trees[1], position, Quaternion.identity);
+			treeToInstantiate = Instantiate(Trees[1], position, Quaternion.identity, treeHolder);
 		} else {
 			scaleFactor = 1 + Random.Range(0, .75f);
 
 			position.Set(position.x, offset, position.z);
             treeScale.Set(scaleFactor, scaleFactor, scaleFactor); 
 
-			treeToInstantiate = Instantiate(Trees[2], position, Quaternion.identity);
+			treeToInstantiate = Instantiate(Trees[2], position, Quaternion.identity, treeHolder);
 		}
-		treeToInstantiate.transform.SetParent(treeHolder);
 		treeToInstantiate.transform.localScale = treeScale;
     }
 
