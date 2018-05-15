@@ -138,10 +138,10 @@ public class TerrainGenerator : MonoBehaviour {
 		}
 
 		clearArea(lowerX, lowerY, range);
-		lowerX = lowerX + (range/2) * (int) scale;
-		lowerY = lowerY + (range/2) * (int) scale;
+		lowerX = lowerX + (range/2);
+		lowerY = lowerY + (range/2);
 
-		Vector3 position = new Vector3(lowerX, 0, lowerY);
+		Vector3 position = new Vector3(lowerX * scale, 0, lowerY * scale);
 		board[lowerX, lowerY] = (int) TerrainItem.Goal;
         goalInstance = Instantiate(goal, position, Quaternion.identity);
 	}
@@ -223,7 +223,7 @@ public class TerrainGenerator : MonoBehaviour {
         Vector3 position = new Vector3(0, 0, 0);
 
         position.Set(r * scale, 0, c * scale);
-		GameObject protrusionToInstantiate;
+			GameObject protrusionToInstantiate;
 		switch (tileIndex) {
 			case 7: 
 				protrusionToInstantiate = Instantiate(Protrusions[0], position, Quaternion.identity, protrusionHolder);
