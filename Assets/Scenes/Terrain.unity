@@ -237,6 +237,11 @@ Prefab:
       propertyPath: inventory
       value: 
       objectReference: {fileID: 125222696}
+    - target: {fileID: 195465654920753090, guid: 1e112603f5de15440a22a72ce9ea28d6,
+        type: 2}
+      propertyPath: m_WalkableMask
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1e112603f5de15440a22a72ce9ea28d6, type: 2}
   m_IsPrefabParent: 0
