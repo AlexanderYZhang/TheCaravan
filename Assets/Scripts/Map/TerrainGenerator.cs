@@ -132,7 +132,7 @@ public class TerrainGenerator : MonoBehaviour {
 		}
 
 		clearArea(lowerX, lowerY, range);
-		Vector3 position = new Vector3((lowerX + range/2) * 3, 0, (lowerY + range/2) * 3);
+		Vector3 position = new Vector3((lowerX + range/2) * scale, 0, (lowerY + range/2) * scale);
         goalInstance = Instantiate(goal, position, Quaternion.identity);
 	}
 
