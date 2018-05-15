@@ -47,7 +47,8 @@ public class LocalNavMeshBuilder : MonoBehaviour
 
     void UpdateNavMesh(bool asyncUpdate = false)
     {
-        NavMeshSourceTag.Collect(ref m_Sources);
+        NavMeshSourceTag.Collect(ref m_Sources, agentIndex);
+
         var defaultBuildSettings = NavMesh.GetSettingsByIndex(agentIndex);
         var bounds = QuantizedBounds();
         if (asyncUpdate)

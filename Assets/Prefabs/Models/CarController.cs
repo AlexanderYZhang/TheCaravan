@@ -32,6 +32,12 @@ public class CarController : MonoBehaviour {
         playerOffset = playerPos - transform.position;
     }
 
+    void OnTriggerEnter(Collider other) {
+        if (other.CompareTag("Tree") || other.CompareTag("Rock")) {
+            Destroy(other.gameObject);
+        }
+    }  
+
     // Update is called once per frame
     void Update () {
 		if (playerController.InsideVehicle()) {

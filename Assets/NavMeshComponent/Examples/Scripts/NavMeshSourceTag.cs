@@ -7,6 +7,7 @@ using System.Collections.Generic;
 [DefaultExecutionOrder(-200)]
 public class NavMeshSourceTag : MonoBehaviour
 {
+    public static int passThroughId = 2 ;
     // Global containers for all active mesh/terrain tags
     public static List<MeshFilter> m_Meshes = new List<MeshFilter>();
     public static List<Terrain> m_Terrains = new List<Terrain>();
@@ -15,7 +16,7 @@ public class NavMeshSourceTag : MonoBehaviour
     {
         var m = GetComponent<MeshFilter>();
         if (m != null)
-        {
+        {   
             m_Meshes.Add(m);
         }
 
@@ -42,7 +43,7 @@ public class NavMeshSourceTag : MonoBehaviour
     }
 
     // Collect all the navmesh build sources for enabled objects tagged by this component
-    public static void Collect(ref List<NavMeshBuildSource> sources)
+    public static void Collect(ref List<NavMeshBuildSource> sources, int id)
     {
         sources.Clear();
 
@@ -53,6 +54,10 @@ public class NavMeshSourceTag : MonoBehaviour
 
             var m = mf.sharedMesh;
             if (m == null) continue;
+
+            if (passThroughId == id && string.Compare(mf.ToString(), "Terrain") != 1) {
+                continue;
+            } 
 
             var s = new NavMeshBuildSource();
             s.shape = NavMeshBuildSourceShape.Mesh;

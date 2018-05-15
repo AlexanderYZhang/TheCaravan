@@ -17,14 +17,21 @@ public class PlayerMotor : MonoBehaviour
     public void MoveToPoint(Vector3 point)
     {
         NavMeshHit hit;
-        if (!NavMesh.SamplePosition(point, out hit, 1.0f, NavMesh.AllAreas)) {
+        NavMeshQueryFilter filter = new NavMeshQueryFilter();
+        // walkable
+        filter.areaMask = (1 << NavMesh.GetAreaFromName("Walkable"));
+        filter.agentTypeID = agent.agentTypeID;
+        if (!NavMesh.SamplePosition(point, out hit, 1.0f, filter)) {
             //Debug.Log("invalid sample" + hit);
-            for (float i = 5f; i <= 7f; i++) {
-                if (NavMesh.SamplePosition(point, out hit, i, NavMesh.AllAreas))
+            for (float i = 5f; i <= 12f; i++) {
+                if (NavMesh.SamplePosition(point, out hit, i, filter))
                 {
                     //Debug.Log("found sample" + hit.position);
                     agent.SetDestination(hit.position);
-                    break;
+                    //Debug.Log("query filter" + filter.agentTypeID);
+                    if (Vector3.Distance(agent.pathEndPosition, hit.position) > 1f) {
+                        break;
+                    }        
                 }
             }
 
