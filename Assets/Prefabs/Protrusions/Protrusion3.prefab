@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 33571325577484564}
   - component: {fileID: 23095009834472720}
   - component: {fileID: 114316460616038852}
+  - component: {fileID: 54332675480877906}
   m_Layer: 0
   m_Name: Mesh1_Group1_Model
   m_TagString: Protrusion
@@ -113,6 +114,21 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1055241226812158}
   m_Mesh: {fileID: 4300000, guid: afdd1aa57848943849602ff23a2b203d, type: 3}
+--- !u!54 &54332675480877906
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1055241226812158}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!114 &114316460616038852
 MonoBehaviour:
   m_ObjectHideFlags: 1
