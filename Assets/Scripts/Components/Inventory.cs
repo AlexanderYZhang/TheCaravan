@@ -54,8 +54,8 @@ public class Inventory : MonoBehaviour {
     }
 
     public bool EnoughForTurret(int turretCode) {
-        TurretData cost = turretData[turretCode];
-        if (wood - cost.wood >= 0 && stone - cost.stone >= 0 && energy - cost.energy >= 0) {
+        TurretData data = turretData[turretCode];
+        if (wood - data.wood >= 0 && stone - data.stone >= 0 && energy - data.energy >= 0) {
             return true;
         }
         return false;
@@ -65,9 +65,18 @@ public class Inventory : MonoBehaviour {
         return turretData[turretCode];
     }
 
-    public void AddTurret(int quantity)
+    public void AddTurret(int turretCode, int quantity)
     {
-		turrets += quantity;
+        TurretData data = turretData[turretCode];
+
+        wood -= data.wood * quantity;
+        stone -= data.stone * quantity;
+        energy -= data.energy * quantity;
+
+        woodText.text = "x " + wood.ToString();
+        stoneText.text = "x " + stone.ToString();
+
+        turrets += quantity;
     }
 
 	

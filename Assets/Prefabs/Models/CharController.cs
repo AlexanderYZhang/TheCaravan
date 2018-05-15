@@ -10,6 +10,8 @@ public class CharController : MonoBehaviour {
     public GameObject marker;
     public NavMeshAgent agent;
     public Inventory inventory;
+    public float runSpeed;
+    public float walkSpeed;
 
     private Interactable focus;
     private CarController carController;
@@ -105,6 +107,51 @@ public class CharController : MonoBehaviour {
         }
     }
 
+    void CreateTurret(int turretCode) {
+        Inventory.TurretData data = inventory.GetTurretData(selectedTurretCode);
+        if (turretCreation == null) {
+            Quaternion rot = new Quaternion {
+                eulerAngles = new Vector3(-90, 0, 0)
+            };
+            turretCreation = Instantiate(
+                data.prefab,
+                marker.transform.position,
+                rot
+            );
+            ChangeObjectMaterial(turretCreation, data.seeThrough);
+            turretCreation.GetComponent<TurretController>().notPlaced = true;
+            turretCreation.GetComponent<SphereCollider>().enabled = false;
+        }
+
+        Ray ray = camera.ScreenPointToRay(Input.mousePosition);
+        int layerMask = groundLayer;
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask)) {
+            turretCreation.transform.position = new Vector3(hit.point.x, 0, hit.point.z);
+            if (turretCreation.GetComponent<TurretController>().Overlapping() &&
+                turretCreation.GetComponent<Renderer>().material != data.seeThroughError) {
+                ChangeObjectMaterial(turretCreation, data.seeThroughError);
+            } else if (turretCreation.GetComponent<Renderer>().material != data.seeThrough) {
+                ChangeObjectMaterial(turretCreation, data.seeThrough);
+            }
+        }
+
+        if (Input.GetMouseButtonDown(0) && inventory.EnoughForTurret(selectedTurretCode) &&
+            !turretCreation.GetComponent<TurretController>().Overlapping()) {
+            ChangeObjectMaterial(turretCreation, data.primary);
+            turretCreation.GetComponent<NavMeshObstacle>().enabled = true;
+            turretCreation.GetComponent<SphereCollider>().enabled = true;
+            turretCreation.GetComponent<TurretController>().notPlaced = false;
+            turretCreation.GetComponent<SphereCollider>().enabled = true;
+            inventory.AddTurret(0, 1);
+            placeMode = false;
+        } else if (!inventory.EnoughForTurret(0)) {
+            placeMode = false;
+        }
+        SetFocus(null);
+    }
+
     // Update is called once per frame
     void Update () {
         if (closeToVehicle) {
@@ -129,48 +176,7 @@ public class CharController : MonoBehaviour {
                 marker.SetActive(true);
             }
             if (placeMode) {
-                Inventory.TurretData data = inventory.GetTurretData(selectedTurretCode);
-                if (turretCreation == null) {
-                    Quaternion rot = new Quaternion {
-                        eulerAngles = new Vector3(-90, 0, 0)
-                    };
-                    turretCreation = Instantiate(
-                        data.prefab,
-                        marker.transform.position,
-                        rot
-                    );
-                    ChangeObjectMaterial(turretCreation, data.seeThrough);
-                    turretCreation.GetComponent<TurretController>().notPlaced = true;
-                    turretCreation.GetComponent<SphereCollider>().enabled = false;
-                }
-
-                Ray ray = camera.ScreenPointToRay(Input.mousePosition);
-                int layerMask = groundLayer;
-                RaycastHit hit;
-
-                if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask)) {
-                    turretCreation.transform.position = new Vector3(hit.point.x, 0, hit.point.z);
-                    if (turretCreation.GetComponent<TurretController>().Overlapping() && 
-                        turretCreation.GetComponent<Renderer>().material != data.seeThroughError) {
-                        ChangeObjectMaterial(turretCreation, data.seeThroughError);
-                    } else if (turretCreation.GetComponent<Renderer>().material != data.seeThrough) {
-                        ChangeObjectMaterial(turretCreation, data.seeThrough);
-                    }
-                }
-
-                if (Input.GetMouseButtonDown(0) && inventory.EnoughForTurret(selectedTurretCode) &&
-                    !turretCreation.GetComponent<TurretController>().Overlapping()) {
-                    ChangeObjectMaterial(turretCreation, data.primary);
-                    turretCreation.GetComponent<NavMeshObstacle>().enabled = true;
-                    turretCreation.GetComponent<SphereCollider>().enabled = true;
-                    turretCreation.GetComponent<TurretController>().notPlaced = false;
-                    turretCreation.GetComponent<SphereCollider>().enabled = true;
-                    inventory.AddTurret(1);
-                    placeMode = false;
-                } else if (!inventory.EnoughForTurret(0)) {
-                    placeMode = false;
-                }
-                SetFocus(null);
+                CreateTurret(1);
             } else {
                 if (focus != null && focus.IsInteracting()) {
                     GetComponent<PlayerMotor>().StopMoveToPoint();
@@ -202,7 +208,7 @@ public class CharController : MonoBehaviour {
                 }
             }
 
-            agent.speed = running ? 15f : 5f;
+            agent.speed = running ? runSpeed : walkSpeed;
 
             float animSpeedPct = 0;
             if (!motor.IsMoving() && focus != null && focus.IsInteracting() && focus is Resource) {
