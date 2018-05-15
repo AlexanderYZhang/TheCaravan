@@ -541,7 +541,7 @@ Transform:
   m_GameObject: {fileID: 1395338324295528}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 4.99, y: 1, z: 5.72}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children:
   - {fileID: 4889179609290362}
   - {fileID: 4226235516533114}
@@ -974,6 +974,8 @@ MonoBehaviour:
   marker: {fileID: 0}
   agent: {fileID: 195465654920753090}
   inventory: {fileID: 0}
+  runSpeed: 5
+  walkSpeed: 1
   closeToVehicle: 0
   motor: {fileID: 0}
 --- !u!114 &114353872438023958
