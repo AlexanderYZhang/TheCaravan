@@ -18,7 +18,6 @@ public class SpawnManager : MonoBehaviour {
 
 	void Start () {
 		dayNight = DayNightController.instance;
-
 	}
 	
 	void Update () {
