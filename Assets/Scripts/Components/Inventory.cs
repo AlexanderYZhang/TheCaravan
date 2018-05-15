@@ -76,6 +76,8 @@ public class Inventory : MonoBehaviour {
         woodText.text = "x " + wood.ToString();
         stoneText.text = "x " + stone.ToString();
 
+        print("Adding Turret");
+
         turrets += quantity;
     }
 
