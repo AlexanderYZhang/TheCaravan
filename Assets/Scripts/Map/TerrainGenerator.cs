@@ -239,21 +239,21 @@ public class TerrainGenerator : MonoBehaviour {
         randomTree = Random.Range(0,3);
 
 		if (randomTree < 1) {
-			scaleFactor =  3 + Random.Range(0, .75f);
+			scaleFactor =  1 + Random.Range(0, .75f);
 
 			position.Set(position.x, offset, position.z);
 			treeScale.Set(scaleFactor, scaleFactor, scaleFactor); 
 
 			treeToInstantiate = Instantiate(Trees[0], position, Quaternion.identity);
 		} else if (randomTree >= 1 && randomTree < 2) {
-			scaleFactor = 3 + Random.Range(0, .75f);
+			scaleFactor = 1 + Random.Range(0, .75f);
 
 			position.Set(position.x, offset, position.z);
             treeScale.Set(scaleFactor, scaleFactor, scaleFactor); 
 
 			treeToInstantiate = Instantiate(Trees[1], position, Quaternion.identity);
 		} else {
-			scaleFactor = 3 + Random.Range(0, .75f);
+			scaleFactor = 1 + Random.Range(0, .75f);
 
 			position.Set(position.x, offset, position.z);
             treeScale.Set(scaleFactor, scaleFactor, scaleFactor); 
