@@ -9,6 +9,7 @@ public class CarController : MonoBehaviour {
     public GameObject canvas;
     public GameObject marker;
     public NavMeshAgent agent;
+    public float maxInteractionDist;
 
     private CharController playerController;
     private CameraController camController;
@@ -57,7 +58,7 @@ public class CarController : MonoBehaviour {
             }
         } else if (!playerController.InsideVehicle()) {
             float distance = Vector3.Distance(player.transform.position, transform.position);
-            if (distance <= 20f) {
+            if (distance <= maxInteractionDist) {
                 playerController.closeToVehicle = true;
             } else {
                 playerController.closeToVehicle = false;

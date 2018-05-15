@@ -7,6 +7,8 @@ public class CharacterStats : MonoBehaviour {
 	public int currentHealth { get; private set; }
 	public Stat damage;
 	public Stat gathering;
+
+    public event System.Action<int, int> OnHealthChanged;
 	void Awake() {
 		currentHealth = maxHealth;
 	}
@@ -14,6 +16,10 @@ public class CharacterStats : MonoBehaviour {
 	public void TakeDamage(int damage) {
 		currentHealth -= damage;
 		Debug.LogWarning("takes damage");
+
+        if (OnHealthChanged != null) {
+            OnHealthChanged(maxHealth, currentHealth);
+        }
 
 		if (currentHealth <= 0) {
 			Die();
