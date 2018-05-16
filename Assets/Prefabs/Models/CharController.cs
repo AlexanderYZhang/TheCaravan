@@ -11,6 +11,7 @@ public class CharController : MonoBehaviour {
     public NavMeshAgent agent;
     public float runSpeed;
     public float walkSpeed;
+    public float maxPlaceDist;
 
     private Interactable focus;
     private CarController carController;
@@ -132,7 +133,9 @@ public class CharController : MonoBehaviour {
 
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask)) {
             turretCreation.transform.position = new Vector3(hit.point.x, 0, hit.point.z);
-            if (turretCreation.GetComponent<TurretController>().Overlapping() &&
+            if ((turretCreation.GetComponent<TurretController>().Overlapping() ||
+                Vector3.Distance(turretCreation.transform.position, transform.position) > maxPlaceDist ||
+                !inventory.EnoughForTurret(selectedTurretCode)) &&
                 turretCreation.GetComponent<Renderer>().material != data.seeThroughError) {
                 ChangeObjectMaterial(turretCreation, data.seeThroughError);
             } else if (turretCreation.GetComponent<Renderer>().material != data.seeThrough) {
@@ -141,7 +144,8 @@ public class CharController : MonoBehaviour {
         }
 
         if (Input.GetMouseButtonDown(0) && inventory.EnoughForTurret(selectedTurretCode) &&
-            !turretCreation.GetComponent<TurretController>().Overlapping()) {
+            !turretCreation.GetComponent<TurretController>().Overlapping() &&
+            Vector3.Distance(turretCreation.transform.position, transform.position) <= maxPlaceDist) {
             ChangeObjectMaterial(turretCreation, data.primary);
             turretCreation.GetComponent<NavMeshObstacle>().enabled = true;
             turretCreation.GetComponent<SphereCollider>().enabled = true;

@@ -1686,7 +1686,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uiPrefab: {fileID: 1012196340326282, guid: 72608a341a098ca41ab443f467b90ebb, type: 2}
   target: {fileID: 4806210877652982}
-  barSize: {x: 300, y: 25}
+  barSize: {x: 400, y: 40}
   ui: {fileID: 0}
 --- !u!114 &114603078822169792
 MonoBehaviour:

@@ -41,7 +41,8 @@ public class TurretController : MonoBehaviour {
                 (other.tag == "Turret" && other is BoxCollider)||
                 other.tag == "Car" ||
                 other.tag == "Rock" ||
-                other.tag == "Tree") {
+                other.tag == "Tree" ||
+                other.tag == "Protrusion") {
                 overlappingObjects.Add(obj);
             }
         } else {
@@ -67,12 +68,20 @@ public class TurretController : MonoBehaviour {
         closest = null;
         if (enemiesInRange.Count > 0) {
             float minDist = float.MaxValue;
+            List<GameObject> remove = new List<GameObject>();
             foreach (GameObject obj in enemiesInRange) {
-                float dist = Vector3.Distance(obj.transform.position, transform.position);
-                if (dist < minDist) {
-                    minDist = dist;
-                    closest = obj;
+                if (obj != null) {
+                    float dist = Vector3.Distance(obj.transform.position, transform.position);
+                    if (dist < minDist) {
+                        minDist = dist;
+                        closest = obj;
+                    }
+                } else {
+                    remove.Add(obj);
                 }
+            }
+            foreach(GameObject obj in remove) {
+                enemiesInRange.Remove(obj);
             }
             turretState = "attack";
         } else {
@@ -104,13 +113,15 @@ public class TurretController : MonoBehaviour {
     }
 
     private void Attack(GameObject obj) {
-        float x = obj.transform.position.x - turretHead.transform.position.x;
-        float z = obj.transform.position.z - turretHead.transform.position.z;
-        float faceRot = Mathf.Atan2(x, z) * Mathf.Rad2Deg;
-        turretHead.transform.eulerAngles = new Vector3(turretHead.transform.eulerAngles.x, 0, faceRot);
-        if (Time.time - timeLastShot >= 1 / rateOfFire) {
-            Fire(x, z);
-            timeLastShot = Time.time;
-        }   
+        if (obj != null) {
+            float x = obj.transform.position.x - turretHead.transform.position.x;
+            float z = obj.transform.position.z - turretHead.transform.position.z;
+            float faceRot = Mathf.Atan2(x, z) * Mathf.Rad2Deg;
+            turretHead.transform.eulerAngles = new Vector3(turretHead.transform.eulerAngles.x, 0, faceRot);
+            if (Time.time - timeLastShot >= 1 / rateOfFire) {
+                Fire(x, z);
+                timeLastShot = Time.time;
+            }
+        }
     }
 }

@@ -7,6 +7,7 @@ public class EnemyStats : MonoBehaviour {
     public int currentHealth { get; private set; }
     public Stat damage;
     public Stat gathering;
+    public GameObject explosion;
 
     public event System.Action<int, int> OnHealthChanged;
     void Awake() {
@@ -15,7 +16,6 @@ public class EnemyStats : MonoBehaviour {
 
     public void TakeDamage(int damage) {
         currentHealth -= damage;
-        Debug.LogWarning("takes damage");
 
         if (OnHealthChanged != null) {
             OnHealthChanged(maxHealth, currentHealth);
@@ -27,6 +27,8 @@ public class EnemyStats : MonoBehaviour {
     }
 
     public virtual void Die() {
-        Debug.Log(transform.name + "died");
+        GameObject.Destroy(gameObject);
+        GameObject exp = GameObject.Instantiate(explosion, transform.position, Quaternion.identity);
+        GameObject.Destroy(exp, 5);
     }
 }
