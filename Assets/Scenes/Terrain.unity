@@ -768,7 +768,7 @@ MonoBehaviour:
   pitch: 2
   zoomSpeed: 4
   minZoom: 5
-  maxZoom: 10
+  maxZoom: 20
   yawSpeed: 100
 --- !u!1 &810818508
 GameObject:

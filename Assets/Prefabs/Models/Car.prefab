@@ -1657,7 +1657,7 @@ MonoBehaviour:
   canvas: {fileID: 0}
   marker: {fileID: 0}
   agent: {fileID: 195352856760063918}
-  maxInteractionDist: 10
+  maxInteractionDist: 12
 --- !u!114 &114851548007884042
 MonoBehaviour:
   m_ObjectHideFlags: 1
