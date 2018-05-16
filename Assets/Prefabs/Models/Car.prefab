@@ -1730,6 +1730,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   speed: 0
+  explosion: {fileID: 1262124515270492, guid: 92a74692ef28d8349b2cf15619e70b3e, type: 2}
 --- !u!114 &114994173904067964
 MonoBehaviour:
   m_ObjectHideFlags: 1
