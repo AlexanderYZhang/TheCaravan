@@ -20,10 +20,13 @@ public class LocalNavMeshBuilder : MonoBehaviour
     NavMeshDataInstance m_Instance;
     List<NavMeshBuildSource> m_Sources = new List<NavMeshBuildSource>();
 
+    void Awake() {
+        NavMesh.pathfindingIterationsPerFrame = 200;
+        NavMesh.avoidancePredictionTime = .5f;
+    }
+
     IEnumerator Start()
     {
-        NavMesh.pathfindingIterationsPerFrame = 50;
-        NavMesh.avoidancePredictionTime = .5f;
         while (true)
         {
             UpdateNavMesh(true);
