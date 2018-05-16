@@ -9,7 +9,6 @@ public class CharController : MonoBehaviour {
     public GameObject canvas;
     public GameObject marker;
     public NavMeshAgent agent;
-    public Inventory inventory;
     public float runSpeed;
     public float walkSpeed;
 
@@ -34,6 +33,7 @@ public class CharController : MonoBehaviour {
 
     new Camera camera;
     public PlayerMotor motor;
+    Inventory inventory;
 
     // Use this for initialization
     void Start () {
@@ -55,6 +55,7 @@ public class CharController : MonoBehaviour {
         inVehicle = false;
 
         marker.SetActive(false);
+        inventory = Inventory.instance;
     }
 
     void OnTriggerEnter(Collider other) {

@@ -42,7 +42,9 @@ public class EnemyController : MonoBehaviour {
             float distToTarget = Vector3.Distance(transform.position, target.transform.position);
 
             anim.SetFloat("speedPct", animSpeedPct);
-            agent.SetDestination(target.transform.position);
+            if (Vector3.Distance(agent.pathEndPosition, target.transform.position) >= 1f) {
+                agent.SetDestination(target.transform.position);
+            }  
         }
     }
     
