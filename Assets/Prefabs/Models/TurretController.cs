@@ -35,7 +35,6 @@ public class TurretController : MonoBehaviour {
 
     void OnTriggerEnter(Collider other) {
         GameObject obj = other.gameObject;
-        print(other.tag);
         if (notPlaced) {
             if (other.tag == "Player" || 
                 (other.tag == "Turret" && other is BoxCollider)||
