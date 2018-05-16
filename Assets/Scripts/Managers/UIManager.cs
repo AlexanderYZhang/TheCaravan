@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour {
 
 	public static UIManager instance = null;
-	static GameObject[] menuObjects;
+	GameObject[] menuObjects;
+	public Text displayText;
 
 	void Awake() {
 		if (instance == null) {
@@ -15,23 +17,23 @@ public class UIManager : MonoBehaviour {
 
 	void Start () {
 		menuObjects = GameObject.FindGameObjectsWithTag("Menu");
-		hideLoseScreen();
+		hideScreen();
 	}
 	
 	void Update () {
 
 	}
 
-	public static void hideLoseScreen() {
+	public void hideScreen() {
 		foreach(GameObject g in menuObjects) {
 			g.SetActive(false);
 		}
 	}
 
-	public static void showLoseScreen() {
+	public void showScreen(string text) {
+		displayText.text = text;
 		foreach(GameObject g in menuObjects) {
 			g.SetActive(true);
 		}
 	}
-
 }

@@ -31,5 +31,6 @@ public class CarStats : MonoBehaviour {
         GameObject.Destroy(gameObject);
         GameObject exp = GameObject.Instantiate(explosion, transform.position, Quaternion.identity);
         GameObject.Destroy(exp, 5);
+        UIManager.instance.showScreen("You Lose");
     }
 }
