@@ -95,6 +95,7 @@ public class TerrainGenerator : MonoBehaviour {
 		// meshObject.layer = 8;
 		playerManager.player.transform.position = new Vector3(2, 1, 2);
 		playerManager.car.transform.position = new Vector3(10, 0, 10);
+		playerManager.car.transform.rotation = Quaternion.identity;
 	}
 	
 	public void DestroyMap() {
@@ -116,7 +117,9 @@ public class TerrainGenerator : MonoBehaviour {
 		}
 		playerManager.player.GetComponent<CharController>().SetFocus(null);
         playerManager.player.GetComponent<PlayerMotor>().StopMoveToPoint();
-	}
+		playerManager.car.GetComponent<CarController>().agent.ResetPath();
+        playerManager.player.GetComponent<CharController>().ExitVehicle(new Vector3(2, 1, 2));
+    }
 
 	private void PlaceGoal() {
 		int corner = (int) Random.Range(0,3);
