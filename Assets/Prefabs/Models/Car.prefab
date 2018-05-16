@@ -145,6 +145,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1380915277853314
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4806210877652982}
+  m_Layer: 10
+  m_Name: HealthUITarget
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1395834873639090
 GameObject:
   m_ObjectHideFlags: 0
@@ -373,10 +388,12 @@ GameObject:
   m_Component:
   - component: {fileID: 4450063846539502}
   - component: {fileID: 114603078822169792}
+  - component: {fileID: 114968645400991916}
   - component: {fileID: 65013547694031652}
   - component: {fileID: 114851548007884042}
   - component: {fileID: 54047272397247932}
   - component: {fileID: 195352856760063918}
+  - component: {fileID: 114551722156774926}
   m_Layer: 10
   m_Name: Car
   m_TagString: Car
@@ -607,6 +624,7 @@ Transform:
   - {fileID: 4628043338510832}
   - {fileID: 4388196611713468}
   - {fileID: 4311636823529618}
+  - {fileID: 4806210877652982}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -726,6 +744,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4450063846539502}
   m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4806210877652982
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1380915277853314}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 8, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4450063846539502}
+  m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4808813902083400
 Transform:
@@ -1642,6 +1673,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 604762be90d8c3b4589cdef7fb09a0af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114551722156774926
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1868459174466754}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1166c5fe41213b34ca3549abe250aef3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiPrefab: {fileID: 1012196340326282, guid: 72608a341a098ca41ab443f467b90ebb, type: 2}
+  target: {fileID: 4806210877652982}
+  barSize: {x: 300, y: 25}
+  ui: {fileID: 0}
 --- !u!114 &114603078822169792
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1671,6 +1717,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   radius: 6
   interactionTransform: {fileID: 4311636823529618}
+--- !u!114 &114968645400991916
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1868459174466754}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c69c4de328ca7b847b49b06e65d26b18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  speed: 0
 --- !u!114 &114994173904067964
 MonoBehaviour:
   m_ObjectHideFlags: 1

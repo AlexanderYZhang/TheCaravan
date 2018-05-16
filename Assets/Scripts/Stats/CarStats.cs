@@ -7,7 +7,9 @@ public class CarStats : MonoBehaviour {
 	public int maxHealth = 100;
 	public int currentHealth { get; private set; }
 	public float speed;
-	void Awake() {
+
+    public event System.Action<int, int> OnHealthChanged;
+    void Awake() {
 		currentHealth = maxHealth;
 	}
 	
@@ -15,7 +17,11 @@ public class CarStats : MonoBehaviour {
 		currentHealth -= damage;
 		Debug.LogWarning(transform.name + "takes damage");
 
-		if (currentHealth <= 0) {
+        if (OnHealthChanged != null) {
+            OnHealthChanged(maxHealth, currentHealth);
+        }
+
+        if (currentHealth <= 0) {
 			Die();
 		}
 	}

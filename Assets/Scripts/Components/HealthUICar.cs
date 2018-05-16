@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HealthUIMainChar : MonoBehaviour {
-
+public class HealthUICar : MonoBehaviour {
     public GameObject uiPrefab;
     public Transform target;
     public Vector2 barSize;
@@ -30,7 +29,7 @@ public class HealthUIMainChar : MonoBehaviour {
                 break;
             }
         }
-        GetComponent<CharacterStats>().OnHealthChanged += OnHealthChanged;
+        GetComponent<CarStats>().OnHealthChanged += OnHealthChanged;
     }
 
     void OnHealthChanged(int maxHealth, int currentHealth) {
@@ -51,4 +50,3 @@ public class HealthUIMainChar : MonoBehaviour {
         }
     }
 }
-

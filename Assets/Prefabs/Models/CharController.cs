@@ -84,6 +84,7 @@ public class CharController : MonoBehaviour {
         marker.transform.position = new Vector3(car.transform.position.x, 0, car.transform.position.z);
         carController.setOffset(transform.position);
         carController.agent.enabled = true;
+        GetComponent<HealthUIMainChar>().ui.gameObject.SetActive(false);
         gameObject.SetActive(false);
     }
 
@@ -93,6 +94,7 @@ public class CharController : MonoBehaviour {
         cameraController.target = transform;
         marker.transform.position = new Vector3(transform.position.x, 0, transform.position.z);
         carController.agent.enabled = false;
+        GetComponent<HealthUIMainChar>().ui.gameObject.SetActive(true);
         gameObject.SetActive(true);
     }
 
