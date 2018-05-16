@@ -833,7 +833,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  health: 0
 --- !u!114 &114567999647314158
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -847,9 +846,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   damage:
-    baseValue: 0
+    baseValue: 5
   gathering:
     baseValue: 0
+  playerKillRange: 2
+  carKillRange: 15
+  turretKillRange: 5
   explosion: {fileID: 1262124515270492, guid: 92a74692ef28d8349b2cf15619e70b3e, type: 2}
 --- !u!136 &136676029569746678
 CapsuleCollider:
@@ -952,4 +954,4 @@ NavMeshAgent:
   m_Height: 2
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 0
+  m_ObstacleAvoidanceType: 1

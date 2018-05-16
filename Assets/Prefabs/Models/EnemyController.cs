@@ -5,13 +5,11 @@ using UnityEngine.AI;
 
 public class EnemyController : MonoBehaviour {
     public GameObject target;
-    public float health;
 
     private Animator anim;
     private bool placed;
     private bool tracking;
     NavMeshAgent agent;
-
 
     private HashSet<GameObject> enemiesInRange;
 
@@ -37,8 +35,27 @@ public class EnemyController : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-
-
+        if (target != null) {
+            if (target.tag == "Player") {
+                if (Vector3.Distance(transform.position, target.transform.position) <
+                    GetComponent<EnemyStats>().playerKillRange) {
+                    GetComponent<EnemyStats>().Die();
+                    target.GetComponent<CharacterStats>().TakeDamage(GetComponent<EnemyStats>().damage.GetValue());
+                }
+            } else if (target.tag == "Car") {
+                if (Vector3.Distance(transform.position, target.transform.position) <
+                GetComponent<EnemyStats>().carKillRange) {
+                    GetComponent<EnemyStats>().Die();
+                    target.GetComponent<CarStats>().TakeDamage(GetComponent<EnemyStats>().damage.GetValue());
+                }
+            } else if (target.tag == "Turret") {
+                if (Vector3.Distance(transform.position, target.transform.position) <
+                    GetComponent<EnemyStats>().turretKillRange) {
+                    GetComponent<EnemyStats>().Die();
+                    target.GetComponent<TurretStats>().TakeDamage(GetComponent<EnemyStats>().damage.GetValue());
+                }
+            }
+        }
     }
     
     void OnDrawGizmos() {
