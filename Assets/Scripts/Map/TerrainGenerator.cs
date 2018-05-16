@@ -27,7 +27,7 @@ public class TerrainGenerator : MonoBehaviour {
 	private Transform resourceHolder;
 	private Transform spawnHolder;
 	private GameObject goalInstance;
-
+	private int level = 0;
 	PlayerManager playerManager;
 
 	private enum TerrainItem {
@@ -96,7 +96,9 @@ public class TerrainGenerator : MonoBehaviour {
 		playerManager.player.transform.position = new Vector3(2, 1, 2);
 		playerManager.car.transform.position = new Vector3(10, 0, 10);
 		playerManager.car.transform.rotation = Quaternion.identity;
-	}
+		level++;
+        UIManager.instance.screenTimeout("Level " + level);
+    }
 	
 	public void DestroyMap() {
 		Debug.Log("destruction"); 
@@ -115,6 +117,10 @@ public class TerrainGenerator : MonoBehaviour {
 		if (goalInstance != null) {
 			Destroy(goalInstance);
 		}
+		if (spawnHolder != null) {
+			Destroy(spawnHolder.gameObject);
+		}
+
 		playerManager.player.GetComponent<CharController>().SetFocus(null);
         playerManager.player.GetComponent<PlayerMotor>().StopMoveToPoint();
 		playerManager.car.GetComponent<CarController>().agent.ResetPath();
@@ -182,8 +188,8 @@ public class TerrainGenerator : MonoBehaviour {
 			}
 		}
 
-		scatterObjects(50, (int)TerrainItem.Resource);
-		scatterObjects(spawnLocations, (int)TerrainItem.Spawn);
+		scatterObjects(100, (int)TerrainItem.Resource);
+		scatterObjects(level + 1, (int)TerrainItem.Spawn);
 
 		for (int i = 0; i < distribution.Length; i++) {
 			print(distribution[i]);

@@ -10,7 +10,7 @@ public class SpawnPoint : MonoBehaviour {
 	int totalSpawn;
 	void Start () {
 		float randomSpawnStart = Random.Range(0f, 10f);
-		float randSpawnFrequency = Random.Range(0f, 2f);
+		float randSpawnFrequency = Random.Range(0f, 4f);
 		InvokeRepeating("Spawn", randomSpawnStart, spawnFrequency + randSpawnFrequency);	
 		totalSpawn = 0;
 	}
@@ -18,12 +18,12 @@ public class SpawnPoint : MonoBehaviour {
 	void Update () {
 		if (totalSpawn >= maxSpawn) {
 			CancelInvoke();
-			Destroy(gameObject);
+			//Destroy(gameObject);
 		}
 	}
 
 	void Spawn() {
-		Instantiate(enemy, transform.position, Quaternion.identity);
+		Instantiate(enemy, transform.position, Quaternion.identity, transform);
         totalSpawn++;
     }
 }
