@@ -943,6 +943,7 @@ MonoBehaviour:
   agent: {fileID: 195465654920753090}
   runSpeed: 10
   walkSpeed: 3
+  maxPlaceDist: 0
   closeToVehicle: 0
   motor: {fileID: 0}
 --- !u!114 &114353872438023958
@@ -975,6 +976,7 @@ MonoBehaviour:
   uiPrefab: {fileID: 1012196340326282, guid: 72608a341a098ca41ab443f467b90ebb, type: 2}
   target: {fileID: 4160864204626620}
   barSize: {x: 200, y: 20}
+  ui: {fileID: 0}
 --- !u!114 &114934144171159858
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1088,4 +1090,4 @@ NavMeshAgent:
   m_Height: 2
   m_BaseOffset: 0
   m_WalkableMask: 1
-  m_ObstacleAvoidanceType: 4
+  m_ObstacleAvoidanceType: 1

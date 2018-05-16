@@ -39,7 +39,6 @@ public class CharController : MonoBehaviour {
     // Use this for initialization
     void Start () {
         anim = GetComponent<Animator>();
-        anim.SetTrigger("moving");
         texts = canvas.GetComponentsInChildren<Text>();
         message = GameObject.Find("MessagePanel");
 

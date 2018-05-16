@@ -10,7 +10,7 @@ public class Goal : MonoBehaviour {
 		generator = TerrainGenerator.instance;
 	}
 	void OnTriggerEnter(Collider other) {
-        if (other.CompareTag("Player") || other.CompareTag("Car")) {
+        if (other.CompareTag("Car")) {
             generator.DestroyMap();
             generator.GenerateMap();
         }

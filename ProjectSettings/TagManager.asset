@@ -10,6 +10,8 @@ TagManager:
   - Bullet
   - Turret
   - Car
+  - Protrusion
+  - Menu
   layers:
   - Default
   - TransparentFX
