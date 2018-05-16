@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.35192725, g: 0.42988226, b: 0.5295265, a: 1}
+  m_IndirectSpecularColor: {r: 0.3519261, g: 0.42988116, b: 0.5295249, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -172,6 +172,21 @@ Prefab:
       propertyPath: inventory
       value: 
       objectReference: {fileID: 125222696}
+    - target: {fileID: 108447391836103294, guid: 1e112603f5de15440a22a72ce9ea28d6,
+        type: 2}
+      propertyPath: m_SpotAngle
+      value: 67
+      objectReference: {fileID: 0}
+    - target: {fileID: 108447391836103294, guid: 1e112603f5de15440a22a72ce9ea28d6,
+        type: 2}
+      propertyPath: m_Range
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 108447391836103294, guid: 1e112603f5de15440a22a72ce9ea28d6,
+        type: 2}
+      propertyPath: m_Lightmapping
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1e112603f5de15440a22a72ce9ea28d6, type: 2}
   m_IsPrefabParent: 0
@@ -215,9 +230,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75e07f1bc0d455349ba60489f02acda1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wood: 100
-  stone: 100
-  energy: 100
+  wood: 0
+  stone: 0
+  energy: 0
   turrets: 0
   turretData:
   - turretType: Turret_Type1
@@ -562,6 +577,26 @@ Prefab:
       propertyPath: marker
       value: 
       objectReference: {fileID: 1972864688}
+    - target: {fileID: 108720900923177418, guid: 3ac1a54fa9dd0d944837b816f8ae8172,
+        type: 2}
+      propertyPath: m_Range
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 108080568733787854, guid: 3ac1a54fa9dd0d944837b816f8ae8172,
+        type: 2}
+      propertyPath: m_Range
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 108720900923177418, guid: 3ac1a54fa9dd0d944837b816f8ae8172,
+        type: 2}
+      propertyPath: m_Lightmapping
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 108080568733787854, guid: 3ac1a54fa9dd0d944837b816f8ae8172,
+        type: 2}
+      propertyPath: m_Lightmapping
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3ac1a54fa9dd0d944837b816f8ae8172, type: 2}
   m_IsPrefabParent: 0
@@ -1024,7 +1059,7 @@ MonoBehaviour:
   sun: {fileID: 553927874}
   sunrise: 0.23
   sunset: 0.75
-  secondsInFullDay: 0
+  secondsInFullDay: 60
   currentTimeOfDay: 0.5
   timeMultiplier: 1
   isDayTime: 0

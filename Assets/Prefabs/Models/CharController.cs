@@ -27,7 +27,6 @@ public class CharController : MonoBehaviour {
     public bool closeToVehicle;
     private bool inVehicle;
     private bool placeMode;
-    private int selectedTurretCode = 0;
     private GameObject turretCreation;
 
     private int groundLayer = 1 << 8;
@@ -35,6 +34,7 @@ public class CharController : MonoBehaviour {
     new Camera camera;
     public PlayerMotor motor;
     Inventory inventory;
+    private int selectedTurretCode;
 
     // Use this for initialization
     void Start () {
@@ -111,7 +111,12 @@ public class CharController : MonoBehaviour {
     }
 
     void CreateTurret(int turretCode) {
-        Inventory.TurretData data = inventory.GetTurretData(selectedTurretCode);
+        Inventory.TurretData data = inventory.GetTurretData(turretCode);
+        if (!inventory.EnoughForTurret(turretCode)) {
+            placeMode = false;
+            return;
+        }
+
         if (turretCreation == null) {
             Quaternion rot = new Quaternion {
                 eulerAngles = new Vector3(-90, 0, 0)
@@ -130,21 +135,23 @@ public class CharController : MonoBehaviour {
         int layerMask = groundLayer;
         RaycastHit hit;
 
+        print(inventory.EnoughForTurret(turretCode));
+
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask)) {
             turretCreation.transform.position = new Vector3(hit.point.x, 0, hit.point.z);
             if ((turretCreation.GetComponent<TurretController>().Overlapping() ||
-                Vector3.Distance(turretCreation.transform.position, transform.position) > maxPlaceDist ||
-                !inventory.EnoughForTurret(selectedTurretCode)) &&
-                turretCreation.GetComponent<Renderer>().material != data.seeThroughError) {
+                    Vector3.Distance(turretCreation.transform.position, transform.position) > maxPlaceDist ||
+                    !inventory.EnoughForTurret(turretCode)) &&
+                    turretCreation.GetComponent<Renderer>().material != data.seeThroughError) {
                 ChangeObjectMaterial(turretCreation, data.seeThroughError);
             } else if (turretCreation.GetComponent<Renderer>().material != data.seeThrough) {
                 ChangeObjectMaterial(turretCreation, data.seeThrough);
             }
         }
 
-        if (Input.GetMouseButtonDown(0) && inventory.EnoughForTurret(selectedTurretCode) &&
-            !turretCreation.GetComponent<TurretController>().Overlapping() &&
-            Vector3.Distance(turretCreation.transform.position, transform.position) <= maxPlaceDist) {
+        if (Input.GetMouseButtonDown(0) && inventory.EnoughForTurret(turretCode) &&
+                !turretCreation.GetComponent<TurretController>().Overlapping() &&
+                Vector3.Distance(turretCreation.transform.position, transform.position) <= maxPlaceDist) {
             ChangeObjectMaterial(turretCreation, data.primary);
             turretCreation.GetComponent<NavMeshObstacle>().enabled = true;
             turretCreation.GetComponent<SphereCollider>().enabled = true;
@@ -152,9 +159,8 @@ public class CharController : MonoBehaviour {
             turretCreation.GetComponent<SphereCollider>().enabled = true;
             inventory.AddTurret(0, 1);
             placeMode = false;
-        } else if (!inventory.EnoughForTurret(0)) {
-            placeMode = false;
-        }
+        } 
+
         SetFocus(null);
     }
 
@@ -175,6 +181,7 @@ public class CharController : MonoBehaviour {
                 turretCreation = null;
                 motor.StopMoveToPoint();
                 marker.SetActive(false);
+                selectedTurretCode = 0;
             } else if (placeMode && Input.GetKeyDown(KeyCode.Escape)) {
                 placeMode = false;
                 DestroyObject(turretCreation);
@@ -182,7 +189,7 @@ public class CharController : MonoBehaviour {
                 marker.SetActive(true);
             }
             if (placeMode) {
-                CreateTurret(1);
+                CreateTurret(selectedTurretCode);
             } else {
                 if (focus != null && focus.IsInteracting()) {
                     GetComponent<PlayerMotor>().StopMoveToPoint();
