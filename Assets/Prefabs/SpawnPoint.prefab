@@ -125,6 +125,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdd001f5ee27375449c466e8bdcb3423, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpawn: 10
+  maxSpawn: 5
   spawnFrequency: 4
   enemy: {fileID: 1241112176326980, guid: 3bb50bad73986274d9150f9e5665e201, type: 2}

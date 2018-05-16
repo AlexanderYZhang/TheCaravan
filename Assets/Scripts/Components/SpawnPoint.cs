@@ -19,8 +19,17 @@ public class SpawnPoint : MonoBehaviour {
 		if (totalSpawn >= maxSpawn) {
 			CancelInvoke();
 			//Destroy(gameObject);
-		}
-	}
+		} else {
+            if (!IsInvoking("Spawn")) {
+                float randomSpawnStart = Random.Range(0f, 10f);
+                float randSpawnFrequency = Random.Range(0f, 4f);
+                InvokeRepeating("Spawn", randomSpawnStart, spawnFrequency + randSpawnFrequency);
+            }
+        }
+        if (!DayNightController.instance.isDayTime && totalSpawn >= maxSpawn) {
+            totalSpawn = 0; 
+        }
+    }
 
 	void Spawn() {
 		Instantiate(enemy, transform.position, Quaternion.identity, transform);
