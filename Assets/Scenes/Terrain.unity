@@ -1316,8 +1316,8 @@ MonoBehaviour:
   - {fileID: 1374789295673024, guid: ccc802bb1e81044109d9af782459f97b, type: 2}
   material: {fileID: 2100000, guid: f9f7c634713c05f48b32c263eeb6635c, type: 2}
   goal: {fileID: 1799531650473706, guid: 8509eec64beaf7340899a4800579b71d, type: 2}
-  spawn: {fileID: 0}
-  spawnLocations: 0
+  spawn: {fileID: 1353873562829838, guid: c0157f8d515915f4f8af7f19043d1ede, type: 2}
+  spawnLocations: 2
   width: 200
   height: 200
   samplingScale: 10
