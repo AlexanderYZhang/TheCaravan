@@ -943,7 +943,7 @@ MonoBehaviour:
   agent: {fileID: 195465654920753090}
   runSpeed: 10
   walkSpeed: 3
-  maxPlaceDist: 0
+  maxPlaceDist: 50
   closeToVehicle: 0
   motor: {fileID: 0}
 --- !u!114 &114353872438023958
