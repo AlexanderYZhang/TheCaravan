@@ -55,10 +55,12 @@ public class NavMeshSourceTag : MonoBehaviour
             var m = mf.sharedMesh;
             if (m == null) continue;
 
-            if (passThroughId == id && string.Compare(mf.ToString(), "Terrain") != 1) {
+            if (passThroughId == id && 
+                string.Compare(mf.ToString(), "Terrain") != 1 && 
+                string.Compare(mf.ToString(), "Protrusion1") != 1 &&
+                string.Compare(mf.ToString(), "Protrusion2") != 1) {
                 continue;
             } 
-
             var s = new NavMeshBuildSource();
             s.shape = NavMeshBuildSourceShape.Mesh;
             s.sourceObject = m;

@@ -40,7 +40,7 @@ GameObject:
   - component: {fileID: 54912104545957072}
   - component: {fileID: 135531766907933346}
   m_Layer: 0
-  m_Name: Mesh1_Group1_Model
+  m_Name: Protrusion2
   m_TagString: Protrusion
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
