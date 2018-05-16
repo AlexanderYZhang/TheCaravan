@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿    using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,6 +7,7 @@ public class CarStats : MonoBehaviour {
 	public int maxHealth = 100;
 	public int currentHealth { get; private set; }
 	public float speed;
+    public GameObject explosion;
 
     public event System.Action<int, int> OnHealthChanged;
     void Awake() {
@@ -27,6 +28,8 @@ public class CarStats : MonoBehaviour {
 	}
 
 	public virtual void Die() {
-		Debug.Log(transform.name + " has been destroyed");
-	}
+        GameObject.Destroy(gameObject);
+        GameObject exp = GameObject.Instantiate(explosion, transform.position, Quaternion.identity);
+        GameObject.Destroy(exp, 5);
+    }
 }

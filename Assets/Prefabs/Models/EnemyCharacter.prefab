@@ -847,7 +847,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   damage:
-    baseValue: 0
+    baseValue: 5
   gathering:
     baseValue: 0
   explosion: {fileID: 1262124515270492, guid: 92a74692ef28d8349b2cf15619e70b3e, type: 2}
@@ -952,4 +952,4 @@ NavMeshAgent:
   m_Height: 2
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
+  m_ObstacleAvoidanceType: 1
