@@ -167,6 +167,11 @@ Prefab:
       propertyPath: marker
       value: 
       objectReference: {fileID: 1972864688}
+    - target: {fileID: 114253546053032074, guid: 1e112603f5de15440a22a72ce9ea28d6,
+        type: 2}
+      propertyPath: inventory
+      value: 
+      objectReference: {fileID: 125222696}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1e112603f5de15440a22a72ce9ea28d6, type: 2}
   m_IsPrefabParent: 0
@@ -759,7 +764,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 133128134}
-  offset: {x: 0.5, y: -0.5, z: 0.5}
+  offset: {x: 2, y: -2, z: 2}
   pitch: 2
   zoomSpeed: 4
   minZoom: 5
@@ -1358,7 +1363,7 @@ MonoBehaviour:
   width: 200
   height: 200
   samplingScale: 10
-  scale: 1
+  scale: 3
 --- !u!4 &1609706634
 Transform:
   m_ObjectHideFlags: 0
