@@ -16,6 +16,8 @@ public class BulletController : MonoBehaviour {
         GameObject obj = other.gameObject;
         if (obj.tag == "Enemy" && other is CapsuleCollider) {
             GameObject.Destroy(gameObject);
+            Stat damage = transform.parent.GetComponent<TurretStats>().damage;
+            obj.GetComponent<EnemyStats>().TakeDamage(damage.GetValue());
         }
     }
 

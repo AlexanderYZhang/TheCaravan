@@ -38,6 +38,7 @@ GameObject:
   - component: {fileID: 23874231240108462}
   - component: {fileID: 114122735999341662}
   - component: {fileID: 54912104545957072}
+  - component: {fileID: 135531766907933346}
   m_Layer: 0
   m_Name: Mesh1_Group1_Model
   m_TagString: Protrusion
@@ -140,3 +141,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e038bf700cfa444fb16c6ef963be9f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!135 &135531766907933346
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1659424946327230}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.47507
+  m_Center: {x: -1.47507, y: 0.445, z: -1.407515}

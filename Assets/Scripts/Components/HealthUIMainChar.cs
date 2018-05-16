@@ -10,7 +10,7 @@ public class HealthUIMainChar : MonoBehaviour {
     public Vector2 barSize;
     float visibleTime = 5;
 
-    Transform ui;
+    public Transform ui;
     Image healthSlider;
     Transform cam;
 
