@@ -28,12 +28,17 @@ public class UIManager : MonoBehaviour {
 		foreach(GameObject g in menuObjects) {
 			g.SetActive(false);
 		}
-	}
+    }
 
 	public void showScreen(string text) {
 		displayText.text = text;
 		foreach(GameObject g in menuObjects) {
 			g.SetActive(true);
 		}
+	}
+
+	public void screenTimeout(string text) {
+        showScreen(text);
+		Invoke("hideScreen", 2f);
 	}
 }
