@@ -221,8 +221,8 @@ MonoBehaviour:
   turrets: 0
   turretData:
   - turretType: Turret_Type1
-    wood: 0
-    stone: 0
+    wood: 10
+    stone: 10
     energy: 0
     prefab: {fileID: 1349132083361284, guid: 6d1a33e752f960942bb0c68517f7d966, type: 2}
     seeThrough: {fileID: 2100000, guid: d56d27b26130fe84e8cd1044b862706e, type: 2}
