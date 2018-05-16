@@ -5,11 +5,13 @@ using UnityEngine;
 public class SpawnPoint : MonoBehaviour {
 
 	public int maxSpawn;
-	public int spawnFrequency;
+	public float spawnFrequency;
 	public GameObject enemy;
 	int totalSpawn;
 	void Start () {
-		InvokeRepeating("Spawn", 2.0f, 2.0f);	
+		float randomSpawnStart = Random.Range(0f, 10f);
+		float randSpawnFrequency = Random.Range(0f, 2f);
+		InvokeRepeating("Spawn", randomSpawnStart, spawnFrequency + randSpawnFrequency);	
 		totalSpawn = 0;
 	}
 	

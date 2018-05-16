@@ -24,6 +24,7 @@ public class EnemyController : MonoBehaviour {
         if (target) {
             agent.SetDestination(target.transform.position);
         }
+        StartCoroutine("followPlayer");
     }
 
     void OnTriggerEnter(Collider other) {
@@ -37,15 +38,7 @@ public class EnemyController : MonoBehaviour {
     // Update is called once per frame
     void Update () {
 
-        if (target != null) {
-            float animSpeedPct = 1;
-            float distToTarget = Vector3.Distance(transform.position, target.transform.position);
 
-            anim.SetFloat("speedPct", animSpeedPct);
-            if (Vector3.Distance(agent.pathEndPosition, target.transform.position) >= 1f) {
-                agent.SetDestination(target.transform.position);
-            }  
-        }
     }
     
     void OnDrawGizmos() {
@@ -59,4 +52,24 @@ public class EnemyController : MonoBehaviour {
             }
         }
     }
+    IEnumerator followPlayer()
+    {
+        while (true)
+        {   
+            if (target != null)
+            {
+                float animSpeedPct = 1;
+                float distToTarget = Vector3.Distance(transform.position, target.transform.position);
+
+                anim.SetFloat("speedPct", animSpeedPct);
+                if (Vector3.Distance(agent.pathEndPosition, target.transform.position) >= 1f)
+                {
+                    agent.SetDestination(target.transform.position);
+                }
+            }
+            yield return new WaitForSeconds(1);
+        }
+    }
+
 }
+

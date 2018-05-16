@@ -22,6 +22,8 @@ public class LocalNavMeshBuilder : MonoBehaviour
 
     IEnumerator Start()
     {
+        NavMesh.pathfindingIterationsPerFrame = 50;
+        NavMesh.avoidancePredictionTime = .5f;
         while (true)
         {
             UpdateNavMesh(true);
