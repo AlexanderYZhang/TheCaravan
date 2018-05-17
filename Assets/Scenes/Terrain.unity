@@ -230,8 +230,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75e07f1bc0d455349ba60489f02acda1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wood: 0
-  stone: 0
+  wood: 20
+  stone: 20
   energy: 0
   turrets: 0
   turretData:
@@ -1059,7 +1059,7 @@ MonoBehaviour:
   sun: {fileID: 553927874}
   sunrise: 0.23
   sunset: 0.75
-  secondsInFullDay: 60
+  secondsInFullDay: 0
   currentTimeOfDay: 0.5
   timeMultiplier: 1
   isDayTime: 0
@@ -1543,6 +1543,7 @@ MonoBehaviour:
   height: 200
   samplingScale: 10
   scale: 3
+  turretHolder: {fileID: 0}
 --- !u!4 &1609706634
 Transform:
   m_ObjectHideFlags: 0

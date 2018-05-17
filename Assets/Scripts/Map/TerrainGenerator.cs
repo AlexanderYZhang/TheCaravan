@@ -26,6 +26,7 @@ public class TerrainGenerator : MonoBehaviour {
 	private Transform protrusionHolder;
 	private Transform resourceHolder;
 	private Transform spawnHolder;
+    public Transform turretHolder;
 	private GameObject goalInstance;
 	private int level = 0;
 	PlayerManager playerManager;
@@ -60,6 +61,7 @@ public class TerrainGenerator : MonoBehaviour {
 		protrusionHolder = new GameObject("Protrusions").transform;
 		resourceHolder = new GameObject("Resources").transform;
 		spawnHolder = new GameObject("SpawnLocations").transform;
+        turretHolder = new GameObject("TurretHolder").transform;
 		
 		for (int r = 0; r < width; r++) {
 			for (int c = 0; c < height; c++) {
@@ -120,6 +122,9 @@ public class TerrainGenerator : MonoBehaviour {
 		if (spawnHolder != null) {
 			Destroy(spawnHolder.gameObject);
 		}
+        if (turretHolder != null) {
+            Destroy(turretHolder.gameObject);
+        }
 
 		playerManager.player.GetComponent<CharController>().SetFocus(null);
         playerManager.player.GetComponent<PlayerMotor>().StopMoveToPoint();
@@ -325,5 +330,4 @@ public class TerrainGenerator : MonoBehaviour {
 
         return m;
     }
-
 }

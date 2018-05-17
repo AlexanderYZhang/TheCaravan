@@ -35,6 +35,7 @@ public class CharController : MonoBehaviour {
     public PlayerMotor motor;
     Inventory inventory;
     private int selectedTurretCode;
+    private TerrainGenerator generator;
 
     // Use this for initialization
     void Start () {
@@ -56,6 +57,7 @@ public class CharController : MonoBehaviour {
 
         marker.SetActive(false);
         inventory = Inventory.instance;
+        generator = TerrainGenerator.instance;
     }
 
     void OnTriggerEnter(Collider other) {
@@ -129,6 +131,7 @@ public class CharController : MonoBehaviour {
             ChangeObjectMaterial(turretCreation, data.seeThrough);
             turretCreation.GetComponent<TurretController>().notPlaced = true;
             turretCreation.GetComponent<SphereCollider>().enabled = false;
+            turretCreation.transform.parent = generator.turretHolder;
         }
 
         Ray ray = camera.ScreenPointToRay(Input.mousePosition);
@@ -188,7 +191,7 @@ public class CharController : MonoBehaviour {
                 turretCreation = null;
                 marker.SetActive(true);
             }
-            if (placeMode) {
+            if (placeMode && generator.turretHolder != null) {
                 CreateTurret(selectedTurretCode);
             } else {
                 if (focus != null && focus.IsInteracting()) {
