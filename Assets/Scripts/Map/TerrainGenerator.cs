@@ -13,6 +13,7 @@ public class TerrainGenerator : MonoBehaviour {
     public int[,] board { get; private set;}
     public int[,] protrusionBoard { get; private set;}
 	
+	public int numRocks;
 	public int spawnLocations;
 	public int width;
 	public int height;
@@ -192,7 +193,7 @@ public class TerrainGenerator : MonoBehaviour {
 			}
 		}
 
-		scatterObjects(100, (int)TerrainItem.Resource);
+		scatterObjects(numRocks, (int)TerrainItem.Resource);
 		scatterObjects(level + 1, (int)TerrainItem.Spawn);
 
 		for (int i = 0; i < distribution.Length; i++) {

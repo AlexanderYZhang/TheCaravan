@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.3519261, g: 0.42988116, b: 0.5295249, a: 1}
+  m_IndirectSpecularColor: {r: 0.35192725, g: 0.42988226, b: 0.5295265, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -1059,7 +1059,7 @@ MonoBehaviour:
   sun: {fileID: 553927874}
   sunrise: 0.23
   sunset: 0.75
-  secondsInFullDay: 0
+  secondsInFullDay: 120
   currentTimeOfDay: 0.5
   timeMultiplier: 1
   isDayTime: 0
@@ -1538,6 +1538,7 @@ MonoBehaviour:
   material: {fileID: 2100000, guid: f9f7c634713c05f48b32c263eeb6635c, type: 2}
   goal: {fileID: 1799531650473706, guid: 8509eec64beaf7340899a4800579b71d, type: 2}
   spawn: {fileID: 1353873562829838, guid: c0157f8d515915f4f8af7f19043d1ede, type: 2}
+  numRocks: 150
   spawnLocations: 2
   width: 200
   height: 200

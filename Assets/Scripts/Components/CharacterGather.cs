@@ -20,7 +20,7 @@ public class CharacterGather : MonoBehaviour {
 	public void Gather (ResourceStats resourceStats) {
 		if (gatherCooldown <= 0f) {
             resourceStats.TakeDamage(myStats.gathering.GetValue());
-			gatherCooldown = 1f / gatherSpeed;
+			gatherCooldown = .75f / gatherSpeed;
         }
     }
 }
