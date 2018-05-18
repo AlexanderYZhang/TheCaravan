@@ -120,8 +120,11 @@ public class TerrainGenerator : MonoBehaviour {
 			Destroy(goalInstance);
 		}
 		if (spawnHolder != null) {
+            foreach (HealthUIEnemy obj in spawnHolder.GetComponentsInChildren<HealthUIEnemy>()) {
+                Destroy(obj.ui.gameObject);
+            }
 			Destroy(spawnHolder.gameObject);
-		}
+        }
         if (turretHolder != null) {
             Destroy(turretHolder.gameObject);
         }
